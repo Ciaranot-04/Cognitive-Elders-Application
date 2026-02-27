@@ -1,0 +1,14 @@
+{
+  "patterns": [
+    { "id": 1, "answer": "red", "layout":  ["red","yellow","red","blue","green","red","yellow","red","blue","green"] },
+    { "id": 2, "answer": "green", "layout":  ["green","blue","green","yellow","orange","green","blue","red","green","orange"] },
+    { "id": 3, "answer": "yellow", "layout":  ["yellow","green","yellow","blue","yellow","red","green","yellow","blue","orange"] },
+    { "id": 4, "answer": "yellow", "layout":  ["yellow","orange","blue","yellow","red","yellow","orange","blue","yellow","red"] },
+    { "id": 5, "answer": "blue", "layout":  ["blue","red","green","blue","yellow","blue","red","blue","orange","blue"] },
+    { "id": 6, "answer": "red", "layout":  ["orange","red","yellow","red","blue","orange","red","orange","green","red"] },
+    { "id": 7, "answer": "orange", "layout":  ["orange","yellow","orange","red","orange","green","orange","blue","red","orange"] },
+    { "id": 8, "answer": "green", "layout":  ["green","blue","green","yellow","green","red","blue","red","yellow","green"] },
+    { "id": 9, "answer": "blue", "layout":  ["yellow","blue","red","blue","orange","yellow","blue","red","blue","orange"] },
+    { "id": 10, "answer": "red", "layout": ["red","orange","green","red","yellow","red","orange","green","red","yellow"] }
+  ]
+}
