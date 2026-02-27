@@ -1,0 +1,68 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "layout": ["red", "blue", "red", "blue", "red", "transparent", "red", "blue"],
+      "answer": "blue",
+      "wrong1": "red",
+      "wrong2": "green",
+      "wrong3": "orange"
+    },
+    {
+      "id": 2,
+      "layout": ["green", "yellow", "orange", "green", "yellow", "transparent", "green", "yellow"],
+      "answer": "orange",
+      "wrong1": "red",
+      "wrong2": "green",
+      "wrong3": "blue"
+    },
+    {
+      "id": 3,
+      "layout": ["yellow", "blue", "green", "red", "yellow", "blue", "transparent", "red"],
+      "answer": "green",
+      "wrong1": "yellow",
+      "wrong2": "blue",
+      "wrong3": "orange"
+    },
+    {
+      "id": 4,
+      "layout": ["blue", "blue", "red", "green", "blue", "transparent", "red", "green"],
+      "answer": "blue",
+      "wrong1": "red",
+      "wrong2": "yellow",
+      "wrong3": "green"
+    },
+    {
+      "id": 5,
+      "layout": ["orange", "green", "blue", "orange", "green", "blue", "orange", "transparent"],
+      "answer": "green",
+      "wrong1": "red",
+      "wrong2": "yellow",
+      "wrong3": "blue"
+    },
+    {
+      "id": 6,
+      "layout": ["red", "red", "red", "yellow", "red", "red", "transparent", "yellow"],
+      "answer": "red",
+      "wrong1": "blue",
+      "wrong2": "green",
+      "wrong3": "orange"
+    },
+    {
+      "id": 7,
+      "layout": ["red", "green", "blue", "red", "green", "blue", "transparent", "green"],
+      "answer": "red",
+      "wrong1": "yellow",
+      "wrong2": "blue",
+      "wrong3": "orange"
+    },
+    {
+      "id": 8,
+      "layout": ["blue", "green", "blue", "green", "blue", "green", "transparent", "green"],
+      "answer": "blue",
+      "wrong1": "red",
+      "wrong2": "yellow",
+      "wrong3": "orange"
+    }
+  ]
+}
