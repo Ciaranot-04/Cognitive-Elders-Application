@@ -16,10 +16,14 @@ export default function puz4() {
   const params = useLocalSearchParams();
   const todaytime = params.todaytime as string;
   const uid = params.uid as string;
+  const [presses, setPresses] = React.useState(1);
   const email = params.email as string;
   const carriedtime = Number(params.time);
   const besttime = params.besttime as string;
   let textsize = params.textsize as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
+  let puz4score = 0;
+
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -72,12 +76,29 @@ export default function puz4() {
       );
   }
   function answers(value: number) {
+      setPresses(prev => prev + 1);
       //if right move next
       if (value === answer) {
-          router.push({ pathname: "/puzzlescreen5", params: { time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+          if(presses==1){
+              puz4score = 100;
+            }
+            else if(presses==2){
+              puz4score = 80;
+            }
+            else if(presses==3){
+              puz4score = 60;
+            }
+            else if(presses==4){
+              puz4score = 20;
+            }
+            else{
+              puz4score = 0;
+            }
+            Puzzlescores[3] = puz4score;
+          router.push({ pathname: "/puzzlescreen5", params: { puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
       } else {
         //wrong notice
-          Alert.alert("Incorrect, Try again.");
+        Alert.alert("Incorrect, Try again.");
       }
   }
   return (

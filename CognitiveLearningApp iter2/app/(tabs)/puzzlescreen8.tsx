@@ -20,6 +20,8 @@ export default function puz8() {
   const carriedtime = Number(params.time);
   const email = params.email as string;
   let textsize = params.textsize as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
+  let puz8score = 0;
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -62,6 +64,8 @@ export default function puz8() {
   //here we set up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
   const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
   }, []);
+  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(time);
+  }, []);
 
   //perform countdown when the page loads
   React.useEffect(() => {
@@ -93,7 +97,29 @@ export default function puz8() {
   function answered(colour: string) {
     //if correct go to next puzzle screen
     if (colour === answer) {
-      router.push({ pathname: "/results", params: { time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+      if (pagetime >= 90) {
+              puz8score = 0;
+          } 
+      else if (pagetime >= 65) {
+          puz8score = 5;
+      } 
+      else if (pagetime >= 55) {
+          puz8score = 20;
+      } 
+      else if (pagetime >= 45) {
+          puz8score = 40;
+      } 
+      else if (pagetime >= 35) {
+          puz8score = 60;
+      } 
+      else if (pagetime >= 25) {
+          puz8score = 80;
+      } 
+      else {
+          puz8score = 100;
+      }
+      Puzzlescores[7] = puz8score;
+      router.push({ pathname: "/results", params: { puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
     } else {
       //if wrong redo the sequence again
       Alert.alert("Incorrect, Try again.");

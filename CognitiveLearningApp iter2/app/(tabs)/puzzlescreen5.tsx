@@ -20,6 +20,9 @@ export default function puz5() {
   const besttime = params.besttime as string;
   const email = params.email as string;
   let textsize = params.textsize as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
+  let puz5score = 0;
+  const [presses, setPresses] = React.useState(1);
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -73,8 +76,25 @@ export default function puz5() {
 
   );
   function ansr(value: String) {
+      setPresses(prev => prev + 1);
       if (value === answer) {
-          router.push({ pathname: "/puzzlescreen6", params: {time: time,  uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+          if(presses==1){
+            puz5score = 100;
+          }
+          else if(presses==2){
+            puz5score = 80;
+          }
+          else if(presses==3){
+            puz5score = 60;
+          }
+          else if(presses==4){
+            puz5score = 20;
+          }
+          else{
+            puz5score = 0;
+          }
+          Puzzlescores[4] = puz5score;
+          router.push({ pathname: "/puzzlescreen6", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
       } else {
           Alert.alert("Incorrect, Try again.");
       }

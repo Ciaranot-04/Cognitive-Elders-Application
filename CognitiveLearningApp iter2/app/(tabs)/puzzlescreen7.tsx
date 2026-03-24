@@ -20,6 +20,9 @@ export default function puz7() {
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
   let textsize = params.textsize as string;
+  const [presses, setPresses] = React.useState(1);
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
+  let puz7scores = 0;
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -57,10 +60,27 @@ export default function puz7() {
     //check the tile they pressed to see if it is correct
     function ispressed(row: number, col: number, colour: string) {
       //get array position
+        setPresses(prev => prev + 1);
         setsel([row, col]);
         //if equal to the answer i and j pos, move to next puzzle
         if (row === answeri && col === answerj) {
-            router.push({ pathname: "/puzzlescreen8", params: { time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+            if(presses==1){
+              puz7scores = 100;
+            }
+            else if(presses==2){
+              puz7scores = 80;
+            }
+            else if(presses==3){
+              puz7scores = 60;
+            }
+            else if(presses==4){
+              puz7scores = 20;
+            }
+            else{
+              puz7scores = 0;
+            }
+            Puzzlescores[6] = puz7scores;
+            router.push({ pathname: "/puzzlescreen8", params: { puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
         } 
         else {
             //otherwise rest

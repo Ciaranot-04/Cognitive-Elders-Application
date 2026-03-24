@@ -18,8 +18,10 @@ export default function puz6() {
   const uid = params.uid as string;
   const besttime = params.besttime as string;
   const email = params.email as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   const carriedtime = Number(params.time);
   let textsize = params.textsize as string;
+  let puz6score = 0;
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -42,7 +44,8 @@ export default function puz6() {
   //here we set up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
   const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
     }, []);
-
+  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(time);
+      }, []);
   //grid variables setup using use states
   const [gridsaved, gridsetter] = React.useState<string[][]>(patternss.layout.map(row => [...row]));
   const [remaining, setcolours] = React.useState<string[]>(gridsaved.flat());
@@ -56,7 +59,29 @@ export default function puz6() {
   //when all tiles have been matched forward to next puzzle page
   React.useEffect(() => {
         if (remaining.length === 0) {
-          router.push({ pathname: "/puzzlescreen7", params: {time: time,  uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+          if (pagetime >= 75) {
+              puz6score = 0;
+          } 
+          else if (pagetime >= 60) {
+              puz6score = 5;
+          } 
+          else if (pagetime >= 45) {
+              puz6score = 20;
+          } 
+          else if (pagetime >= 30) {
+              puz6score = 40;
+          } 
+          else if (pagetime >= 20) {
+              puz6score = 60;
+          } 
+          else if (pagetime >= 10) {
+              puz6score = 80;
+          } 
+          else {
+              puz6score = 100;
+          }
+          Puzzlescores[5] = puz6score;
+          router.push({ pathname: "/puzzlescreen7", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
         }
       },[remaining]);
   //the function to check when a tile is pressed, we see if its the first tile, if so remember that, if its the second one, compare them

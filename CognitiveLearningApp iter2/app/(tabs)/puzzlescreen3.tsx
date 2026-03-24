@@ -16,10 +16,13 @@ export default function puz3() {
   const params = useLocalSearchParams();
   const todaytime = params.todaytime as string;
   const uid = params.uid as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   const email = params.email as string;
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
   let textsize = params.textsize as string;
+  const [presses, setPresses] = React.useState(1);
+  let puz3score = 0;
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -56,11 +59,28 @@ export default function puz3() {
 
     //check the tile they pressed to see if it is correct
     function ispressed(row: number, col: number, colour: string) {
+        setPresses(prev => prev + 1);
       //get array position
         setsel([row, col]);
         //if equal to the answer i and j pos, move to next puzzle
         if (row === answeri && col === answerj) {
-            router.push({ pathname: "/puzzlescreen4", params: { time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+            if(presses==1){
+              puz3score = 100;
+            }
+            else if(presses==2){
+              puz3score = 80;
+            }
+            else if(presses==3){
+              puz3score = 60;
+            }
+            else if(presses==4){
+              puz3score = 20;
+            }
+            else{
+              puz3score = 0;
+            }
+            Puzzlescores[2] = puz3score;
+            router.push({ pathname: "/puzzlescreen4", params: { puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
         } 
         else {
             //otherwise rest

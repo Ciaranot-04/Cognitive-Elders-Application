@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Calendar, DateData } from "react-native-calendars";
 
 //our function component for this page, the logical stuff
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
   const email = params.email as string;
   const besttime = params.besttime as string;
   let textsize = params.textsize as string;
+  const [selectedDate, setSelectedDate] = React.useState("");
   
 
   //text size segment, how we decide the scaleability of the text
@@ -32,7 +34,11 @@ export default function Home() {
   if(textsize=="Default"){
     textsizenumber = 0;
   }
-  
+  function dateselected(day: DateData){
+    console.log(day.dateString); 
+    setSelectedDate(day.dateString);
+    router.push({pathname: "/barchart", params: {date: day.dateString, uid: uid, email: email,textsize: textsize}});
+  }
   return (
     //the visual components
     <View style={styles.maincontainer}>
@@ -48,10 +54,11 @@ export default function Home() {
         </View>
         {/*mid section container*/}
         <View style={styles.sub2container}>
-            <Text style={[styles.logotext,{marginBottom:20,color:"#3a4c87",fontSize: 26+textsizenumber}]}>Performance Overview</Text>
-            <Text style={[styles.subtitle,{color:"#085107",fontSize: 18+textsizenumber}]}>Best Time: {besttime}s </Text>
-            <Text style={[styles.subtitle,{marginBottom:180,color:"#ffffff",fontSize: 18+textsizenumber}]}>Todays Time: {todaytime}s</Text>
-            <Text style={[styles.logotext,{marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
+            <Text style={[styles.logotext,{marginTop:10,marginBottom:10,color:"#3a4c87",fontSize: 22+textsizenumber}]}>Performance Overview</Text>
+            <View style={{ padding: 15,height: 320,overflow: "hidden", alignItems: "center"}}>
+              <Calendar style={{ width: 320}} onDayPress={dateselected} showSixWeeks={true} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue"}}} />
+            </View>
+            <Text style={[styles.logotext,{marginTop:50,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
             {/*starts puzzle track*/}
             <TouchableOpacity onPress={() => router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }})} style={[styles.playbutton]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>
         </View>

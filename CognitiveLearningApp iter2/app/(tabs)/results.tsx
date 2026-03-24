@@ -7,7 +7,7 @@ Date: 27/02/2026
 //import important and used modules
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { db } from "./config";
@@ -19,12 +19,18 @@ export default function results() {
   const todaytime = params.time as string;
   const uid = params.uid as string;
   const email = params.email as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
   let textsize = params.textsize as string;
   let bestTimeN = Number(params.besttime);
   const todayTimeN = Number(params.time);
-
+  console.log(Puzzlescores);
+  const lang = 100;
+  const memory = 80;
+  const numeracy = 100;
+  const visual = 20;
+  const logic = 60;
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
   if(textsize=="Larger"){
@@ -42,20 +48,19 @@ export default function results() {
   if (todayTimeN > bestTimeN) {
   bestTimeN = todayTimeN;
 }
-
-  //(ChatGPT helped here with this function)
-  async function updatetime(uid: string, today: Number, best:Number) {
+  async function userdaylog( uid: string, lang: number, memory: number, visual: number, logic: number, numeracy: number) {
     try {
-      //connect to the database via the uid weve been tracking
-      const conn = doc(db, "Users", uid);
-      //submit an update to the db
-      await updateDoc(conn, {todaystime: today, besttime:best});
-    } 
-    catch (error) {
+      const today = new Date();
+      const todays = today.toISOString().split("T")[0];
+
+      const perf = collection(db, "Users", uid, "performances");
+      const docRef = await addDoc(perf, {date: todays,uid,lang,memory,visual,logic,numeracy,});
+    } catch (error) {
+      console.error("Error logging ", error);
     }
   }
   //run the function
-  updatetime(uid, todayTimeN,bestTimeN);
+  userdaylog(uid,lang,memory,visual,logic,numeracy);
   return (
     //the visual components
     <View style={styles.maincontainer}>

@@ -16,10 +16,12 @@ export default function puz2() {
   const params = useLocalSearchParams();
   const todaytime = params.todaytime as string;
   const uid = params.uid as string;
+  let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
   const email = params.email as string;
   let textsize = params.textsize as string;
+  let puz2score = 0;
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -62,6 +64,8 @@ export default function puz2() {
   //here we set up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
   const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
   }, []);
+  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(time);
+      }, []);
 
   //perform countdown when the page loads
   React.useEffect(() => {
@@ -93,7 +97,29 @@ export default function puz2() {
   function answered(colour: string) {
     //if correct go to next puzzle screen
     if (colour === answer) {
-      router.push({ pathname: "/puzzlescreen3", params: { time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+      if (pagetime >= 90) {
+              puz2score = 0;
+          } 
+      else if (pagetime >= 65) {
+          puz2score = 5;
+      } 
+      else if (pagetime >= 55) {
+          puz2score = 20;
+      } 
+      else if (pagetime >= 45) {
+          puz2score = 40;
+      } 
+      else if (pagetime >= 35) {
+          puz2score = 60;
+      } 
+      else if (pagetime >= 25) {
+          puz2score = 80;
+      } 
+      else {
+          puz2score = 100;
+      }
+      Puzzlescores[1] = puz2score;
+      router.push({ pathname: "/puzzlescreen3", params: { time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, puzzleScores: JSON.stringify(Puzzlescores) }});
     } else {
       //if wrong redo the sequence again
       Alert.alert("Incorrect, Try again.");

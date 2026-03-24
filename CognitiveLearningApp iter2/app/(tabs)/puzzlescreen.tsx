@@ -19,6 +19,8 @@ export default function puz1() {
   const uid = params.uid as string;
   const email = params.email as string;
   let textsize = params.textsize as string;
+  let puz1score = 0;
+  let puzzleScores = [0,0,0,0,0,0,0,0];
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -34,6 +36,8 @@ export default function puz1() {
 
   //here we set up our timer, it is the first page so it starts at 0, it increments every second
   const [time, settime] = React.useState(0); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
+    }, []);
+  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(time);
     }, []);
 
   //here we select a pattern from the JSON file puzzles.json
@@ -56,7 +60,29 @@ export default function puz1() {
   //once all squares have been matched, redirect the user to the next puzzle screen
   React.useEffect(() => {
         if (remaining.length === 0) {
-          router.push({ pathname: "/puzzlescreen2", params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, time: time }});
+          if (pagetime >= 75) {
+              puz1score = 0;
+          } 
+          else if (pagetime >= 60) {
+              puz1score = 5;
+          } 
+          else if (pagetime >= 45) {
+              puz1score = 20;
+          } 
+          else if (pagetime >= 30) {
+              puz1score = 40;
+          } 
+          else if (pagetime >= 20) {
+              puz1score = 60;
+          } 
+          else if (pagetime >= 10) {
+              puz1score = 80;
+          } 
+          else {
+              puz1score = 100;
+          }
+          puzzleScores[0] = puz1score;
+          router.push({ pathname: "/puzzlescreen2", params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, time: time, puzzleScores: JSON.stringify(puzzleScores) }});
         }
       },[remaining]);
 
