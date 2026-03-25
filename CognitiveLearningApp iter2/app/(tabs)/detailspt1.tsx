@@ -42,8 +42,19 @@ export default function Details() {
       Alert.alert('Failed to Create Profile, Please try again.');
       return;
     }
-    //(ChatGPT) helped here
-    //told me to use try and catch segments and setDoc
+
+
+    const generatelinkcode = (length = 8) => {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return result;
+    };
+    const usercode = generatelinkcode();
     try {
       //send this to the database creating a user of UID and give it these fields
       if(acc==="Elderly"){
@@ -56,9 +67,8 @@ export default function Details() {
           Account_Made: new Date(),
           textsize: ts,
           UID: uid,
-          besttime: bt,
-          todaystime: tt,
           acctype: acc,
+          uniquecode: usercode,
         });
       }
       else{
@@ -72,7 +82,7 @@ export default function Details() {
           textsize: ts,
           UID: uid,
           acctype: acc,
-          LinkedUser: null,
+          sharevia:"",
         });
       }
       //tell user account was created and auto forward them to the home page

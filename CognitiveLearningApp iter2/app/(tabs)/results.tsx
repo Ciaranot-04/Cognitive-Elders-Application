@@ -16,21 +16,19 @@ import { db } from "./config";
 export default function results() {
   //pull and assign variables from passed router push
   const params = useLocalSearchParams();
-  const todaytime = params.time as string;
   const uid = params.uid as string;
   const email = params.email as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
-  const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
   let textsize = params.textsize as string;
   let bestTimeN = Number(params.besttime);
   const todayTimeN = Number(params.time);
   console.log(Puzzlescores);
-  const lang = 100;
-  const memory = 80;
-  const numeracy = 100;
-  const visual = 20;
-  const logic = 60;
+  const lang = 40;
+  const memory = (Puzzlescores[1]+Puzzlescores[7])/2;
+  const numeracy = (Puzzlescores[3]+Puzzlescores[5])/2;
+  const visual = (Puzzlescores[0]+Puzzlescores[5])/2;
+  const logic = (Puzzlescores[2]+Puzzlescores[6]+Puzzlescores[4])/3;
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
   if(textsize=="Larger"){
@@ -74,9 +72,8 @@ export default function results() {
             </TouchableOpacity>
         </View>
         <View style={styles.sub2container}>
-            <Text style={[styles.subtitle,{color:"#069003",fontSize: 18+textsizenumber}]}>Best Time: {besttime}s </Text>
-            <Text style={[styles.logotext,{marginBottom:30}]}>Time: {todaytime}s</Text>
-            <TouchableOpacity onPress={() => router.push({ pathname: "/homegrey", params: {time: time,  uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }})} style={styles.playbutton}><Text style={styles.buttont}>Return Home</Text></TouchableOpacity>
+            <Text style={[styles.subtitle,{color:"#069003",fontSize: 18+textsizenumber}]}>You can view your results on the home page via the calendar! </Text>
+            <TouchableOpacity onPress={() => router.push({ pathname: "/home", params: {time: time,  uid: uid, email: email, textsize: textsize }})} style={styles.playbutton}><Text style={styles.buttont}>Return Home</Text></TouchableOpacity>
         </View>
     </View>
   );

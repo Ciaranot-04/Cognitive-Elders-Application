@@ -15,10 +15,8 @@ import { Calendar, DateData } from "react-native-calendars";
 export default function Home() {
   //pull and assign variables from passed router push
   const params = useLocalSearchParams();
-  const todaytime = params.todaytime as string;
   const uid = params.uid as string;
   const email = params.email as string;
-  const besttime = params.besttime as string;
   let textsize = params.textsize as string;
   const [selectedDate, setSelectedDate] = React.useState("");
   
@@ -45,7 +43,7 @@ export default function Home() {
         {/*Top bar segment container*/}
         <View style={styles.sub1container}>
             <Text style={[styles.logotext,{marginTop:20,fontSize: 26+textsizenumber}]}>Squares</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push({ pathname: "/account", params: { uid: uid, email: email, textsize: textsize }})}>
                 <View style={[styles.iconstextcontainer,{marginLeft: 140,marginTop:20}]}>
                 <Ionicons name="people-circle-outline" size={40} color="#ffffff" />
                 <Text style={[styles.icontext,{color:"#ffffff",fontSize: 12+textsizenumber}]}>Account</Text>
@@ -58,25 +56,9 @@ export default function Home() {
             <View style={{ padding: 15,height: 320,overflow: "hidden", alignItems: "center"}}>
               <Calendar style={{ width: 320}} onDayPress={dateselected} showSixWeeks={true} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue"}}} />
             </View>
-            <Text style={[styles.logotext,{marginTop:50,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
+            <Text style={[styles.logotext,{marginTop:130,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
             {/*starts puzzle track*/}
-            <TouchableOpacity onPress={() => router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }})} style={[styles.playbutton]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>
-        </View>
-        {/*lower section, holds setting and log out navigations*/}
-        <View style={styles.sub3container}>
-            <TouchableOpacity onPress={() => router.push({ pathname: "/settings", params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }})}>
-                <View style={styles.iconstextcontainer}>
-                <Ionicons name="settings-outline" size={40} color="#494949"/>
-                <Text style={[styles.icontext,{color:"#494949",marginBottom:20,fontSize: 12+textsizenumber}]}>Settings</Text>
-                </View>
-            </TouchableOpacity>
-            {/*navigate to index aka login screen*/}
-            <TouchableOpacity onPress={() => router.push('/')}>
-                <View style={[styles.iconstextcontainer]}>
-                <Ionicons name="log-out-outline" size={40} color="#ff2626"/>
-                <Text style={[styles.icontext,{color:"#ff2626",marginBottom:20,fontSize: 12+textsizenumber}]}>Log Out</Text>
-                </View>
-            </TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, textsize: textsize }})} style={[styles.playbutton,{marginBottom:20}]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>
         </View>
     </View>
   );
