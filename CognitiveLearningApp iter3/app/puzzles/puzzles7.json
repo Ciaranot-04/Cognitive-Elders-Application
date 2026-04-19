@@ -1,0 +1,64 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "answer": "cat",
+      "scrambled": "tca",
+      "category": "Animal"
+    },
+    {
+      "id": 2,
+      "answer": "apple",
+      "scrambled": "elpap",
+      "category": "Food"
+    },
+    {
+      "id": 3,
+      "answer": "water",
+      "scrambled": "terwa",
+      "category": "Drink"
+    },
+    {
+      "id": 4,
+      "answer": "pie",
+      "scrambled": "eip",
+      "category": "Food"
+    },
+    {
+      "id": 5,
+      "answer": "tree",
+      "scrambled": "reet",
+      "category": "Nature"
+    },
+    {
+      "id": 6,
+      "answer": "truck",
+      "scrambled": "krtuc",
+      "category": "Vehicle"
+    },
+    {
+      "id": 7,
+      "answer": "stamp",
+      "scrambled": "pmtsa",
+      "category": "Post / Mail"
+    },
+    {
+      "id": 8,
+      "answer": "smile",
+      "scrambled": "lesim",
+      "category": "Expression"
+    },
+    {
+      "id": 9,
+      "answer": "spray",
+      "scrambled": "yraps",
+      "category": "Household"
+    },
+    {
+      "id": 10,
+      "answer": "towel",
+      "scrambled": "welot",
+      "category": "Bathroom"
+    }
+  ]
+}

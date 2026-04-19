@@ -1,0 +1,64 @@
+{
+  "patterns": [
+    {
+      "id": 1,
+      "sentence": "____ is my favourite colour.",
+      "answer": "Red",
+      "options": ["Wet", "Red", "Read", "Thread"]
+    },
+    {
+      "id": 2,
+      "sentence": "I like to ____ cookies.",
+      "answer": "eat",
+      "options": ["meet", "cheat", "eat", "pork"]
+    },
+    {
+      "id": 3,
+      "sentence": "I ____ dogs.",
+      "answer": "like",
+      "options": ["like", "smelly", "stick", "chopsticks"]
+    },
+    {
+      "id": 4,
+      "sentence": "The Queen of England is a ____.",
+      "answer": "lady",
+      "options": ["man", "lady", "butter", "throne"]
+    },
+    {
+      "id": 5,
+      "sentence": "I like ____ coat.",
+      "answer": "your",
+      "options": ["you're", "you", "your", "youth"]
+    },
+    {
+      "id": 6,
+      "sentence": "I went on a trip to ____.",
+      "answer": "Japan",
+      "options": ["pan", "sleep", "Japan", "south"]
+    },
+    {
+      "id": 7,
+      "sentence": "I went ____ the shop.",
+      "answer": "to",
+      "options": ["two", "too", "to", "toot"]
+    },
+    {
+      "id": 8,
+      "sentence": "The cat sat on the ____.",
+      "answer": "mat",
+      "options": ["tornado", "mat", "walk", "sky"]
+    },
+    {
+      "id": 9,
+      "sentence": "A dog likes to ____ a ball.",
+      "answer": "chase",
+      "options": ["read", "sleep", "swim", "chase"]
+    },
+    {
+      "id": 10,
+      "sentence": "We see stars at ____.",
+      "answer": "night",
+      "options": ["night", "light", "bright", "right"]
+    }
+  ]
+}
