@@ -6,7 +6,7 @@ Date: 27/02/2026
 
 //import important and used modules
 import { Ionicons } from '@expo/vector-icons';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -22,11 +22,13 @@ export default function memHome() {
   let textsize = params.textsize as string;
   const [selectedDate, setSelectedDate] = React.useState("");
   let [linkeduser, setlinkeduser] = React.useState("");
-  const [linkCode, setLinkCode] = React.useState("");
+  const [linkcode, setLinkCode] = React.useState("");
 
-  React.useEffect(() => {
+  useFocusEffect(
+  React.useCallback(() => {
     getLinkedUser();
-  }, []);
+  }, [uid])
+  );
 
   const getLinkedUser = async () => {
     try {
@@ -47,15 +49,15 @@ export default function memHome() {
 
   const findacc = async () => {
     try {
-      const cleanedCode = linkCode.trim();
+      const code = linkcode.trim();
 
-      if (cleanedCode === "") {
+      if (code === "") {
         console.log("No code entered");
         return;
       }
 
       const usersRef = collection(db, "Users");
-      const q = query(usersRef, where("uniquecode", "==", cleanedCode));
+      const q = query(usersRef, where("uniquecode", "==", code));
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
@@ -148,7 +150,7 @@ export default function memHome() {
                   style={[styles.input, { fontSize: 16 + textsizenumber }]}
                   placeholder="Enter link code"
                   placeholderTextColor="#777"
-                  value={linkCode}
+                  value={linkcode}
                   onChangeText={setLinkCode}
                 />
 

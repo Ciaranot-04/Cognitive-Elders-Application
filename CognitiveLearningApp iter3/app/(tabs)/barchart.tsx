@@ -87,6 +87,7 @@ export default function Account() {
             width={screenWidth}
             height={350}
             yAxisLabel=""
+            showValuesOnTopOfBars={true}
             fromZero={true}
             yAxisSuffix=""
             chartConfig={{

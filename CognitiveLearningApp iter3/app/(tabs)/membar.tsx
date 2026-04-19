@@ -14,7 +14,7 @@ import { BarChart } from 'react-native-chart-kit';
 import { db } from "./config";
 
 // Component
-export default function Account() {
+export default function membar() {
 
   const params = useLocalSearchParams();
   const uid = params.uid as string;
