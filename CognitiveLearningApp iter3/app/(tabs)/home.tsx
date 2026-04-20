@@ -19,6 +19,7 @@ export default function Home() {
   let textsize = params.textsize as string;
   const [selectedDate, setSelectedDate] = React.useState("");
   const [name, setname] = React.useState("");
+  const [besttime, setbesttime] = React.useState<number | null>(null);
   const [difficulties, setdiff] = React.useState({
     logic: "easy",
     numeracy: "easy",
@@ -39,6 +40,7 @@ export default function Home() {
       if (userSnap.exists()) {
         const userData = userSnap.data();
         setname(userData.FirstName);
+        setbesttime(userData.besttime ?? null);
 
         const defaultdiff = {
           logic: "easy",
@@ -63,6 +65,14 @@ export default function Home() {
       console.log("Error getting user data:", error);
     }
   };
+
+  function timecalc(seconds: number) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    const calculation = secs < 10 ? `0${secs}` : secs;
+    return `${mins}:${calculation}`;
+  }
+
   let textsizenumber = 0;
   if(textsize=="Larger"){
     textsizenumber = 5;
@@ -96,7 +106,10 @@ export default function Home() {
             <View style={{ padding: 15,height: 320,overflow: "hidden", alignItems: "center"}}>
               <Calendar style={{ width: 320,overflow: "hidden"}} onDayPress={dateselected} showSixWeeks={true} theme={{ calendarBackground: "#ffffff", textSectionTitleColor: "#2b3760", selectedDayBackgroundColor: "#3665ff", selectedDayTextColor: "#ffffff", todayTextColor: "#0fc625", dayTextColor: "#27272e", textDisabledColor: "#c0c0c0", arrowColor: "#607bd2", monthTextColor: "#3756c6", textMonthFontWeight: "bold", textDayFontWeight: "500", textMonthFontSize: 18, textDayFontSize: 14, }} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue"}}} />
             </View>
-            <Text style={[styles.logotext,{marginTop:130,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
+            <Text style={[styles.logotext,{marginTop:30,marginBottom:10,fontSize: 18+textsizenumber,color:"#8effa1"}]}>
+              Best Time: {besttime !== null ? timecalc(besttime) : "No best time yet"}
+            </Text>
+            <Text style={[styles.logotext,{marginTop:20,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
             <TouchableOpacity onPress={() => router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties) }})} style={[styles.playbutton,{marginBottom:80}]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>
         </View>
     </View>

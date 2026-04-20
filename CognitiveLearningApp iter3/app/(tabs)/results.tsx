@@ -20,14 +20,20 @@ export default function results() {
   const carriedtime = Number(params.time);
   const time = carriedtime;
   let textsize = params.textsize as string;
+
   const lang = 100;
   const memory = 100;
   const numeracy = 100;
   const visual = 100;
   const logic = 100;
-  const dataforchart = { labels: ["Logic", "Numeracy", "Memory", "Language", "Visual"],
-    datasets: [ { data: [logic, numeracy, memory, lang, visual], },],
+
+  const dataforchart = {
+    labels: ["Logic", "Numeracy", "Memory", "Language", "Visual"],
+    datasets: [
+      { data: [logic, numeracy, memory, lang, visual] },
+    ],
   };
+
   let textsizenumber = 0;
   if (textsize == "Larger") {
     textsizenumber = 5;
@@ -54,6 +60,15 @@ export default function results() {
 
     return levels[safeIndex];
   }
+
+  function timecalc(seconds: number) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    const calculation = secs < 10 ? `0${secs}` : secs;
+    return `${mins}:${calculation}`;
+  }
+
+  const finishedtime = timecalc(carriedtime);
 
   async function updateUserDifficulties() {
     try {
@@ -87,26 +102,52 @@ export default function results() {
         difficulties: updatedDifficulties,
       });
     } catch (error) {
-      console.error("Error: ", error);
+      console.error("Error updating difficulties: ", error);
     }
   }
-  function timecalc(seconds: number) {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
 
-    const calculation = secs < 10 ? `0${secs}` : secs;
-    const fintime = `${mins}:${calculation}`;
-    return fintime;
+  async function updateBestTime() {
+    try {
+      const userRef = doc(db, "Users", uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        console.log("User not found");
+        return;
+      }
+
+      const userData = userSnap.data();
+      const currentbest = userData.besttime;
+
+      if (currentbest === undefined || currentbest === null) {
+        await updateDoc(userRef, {
+          besttime: carriedtime,
+        });
+        console.log("Best time created:", carriedtime);
+        return;
+      }
+
+      if (carriedtime < Number(currentbest)) {
+        await updateDoc(userRef, {
+          besttime: carriedtime,
+        });
+        console.log(carriedtime);
+      } else {
+        console.log(currentbest);
+      }
+    } catch (error) {
+      console.error("Error updating best time:", error);
+    }
   }
-  const finishedtime = timecalc(carriedtime);
   async function userdaylog() {
     try {
       const today = new Date();
       const todays = today.toISOString().split("T")[0];
       const perf = collection(db, "Users", uid, "performances");
-      await addDoc(perf, { date: todays, Time:finishedtime, uid, lang, memory, visual, logic, numeracy, });
+      await addDoc(perf, { date: todays, Time: finishedtime, uid, lang, memory, visual, logic, numeracy,
+      });
     } catch (error) {
-      console.error("Error: ", error);
+      console.error("Error saving daily log: ", error);
     }
   }
 
@@ -115,6 +156,7 @@ export default function results() {
       if (uid) {
         await userdaylog();
         await updateUserDifficulties();
+        await updateBestTime();
       }
     }
     savedata();
@@ -135,9 +177,9 @@ export default function results() {
       <View style={styles.sub1container}>
         <Text style={[styles.logotext, { marginTop: 20, fontSize: 26 + textsizenumber }]}>Shapes</Text>
       </View>
-      <View style={[styles.sub2container,{overflow:"hidden"}]}>
-        <Text style={[styles.logotext, { marginBottom: 10, paddingTop:30 }]}>Your Scores Today</Text>
-        <Text style={[styles.buttont, { marginBottom: 20, alignSelf:"center" }]}>Completion Time: {finishedtime}</Text>
+      <View style={[styles.sub2container, { overflow: "hidden" }]}>
+        <Text style={[styles.logotext, { marginBottom: 10, paddingTop: 30 }]}>Your Scores Today</Text>
+        <Text style={[styles.buttont, { marginBottom: 20, alignSelf: "center" }]}>Completion Time: {finishedtime}</Text>
         <BarChart
           data={dataforchart}
           width={370}
@@ -164,14 +206,16 @@ export default function results() {
         <View style={styles.irow}>
           {dataforchart.datasets[0].data.map((score, index) => (
             <View key={index} style={styles.ibox}>
-              <Text style={[styles.iconLabel, { fontSize: 11}]}>
+              <Text style={[styles.iconLabel, { fontSize: 11 }]}>
                 {dataforchart.labels[index]}
               </Text>
               {iconsetter(score)}
             </View>
           ))}
         </View>
-        <TouchableOpacity onPress={() => router.push({ pathname: "/home", params: { time: time, uid: uid, email: email, textsize: textsize } }) } style={styles.playbutton} >
+        <TouchableOpacity
+          onPress={() =>
+            router.push({ pathname: "/home", params: { time: time, uid: uid, email: email, textsize: textsize } }) } style={styles.playbutton}>
           <Text style={styles.buttont}>Return Home</Text>
         </TouchableOpacity>
         <View style={styles.bottomdesc}>
@@ -192,6 +236,7 @@ export default function results() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   logotext: {
     fontSize: 26,
