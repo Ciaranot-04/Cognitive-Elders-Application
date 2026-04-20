@@ -107,7 +107,7 @@ export default function Home() {
               <Calendar style={{ width: 320,overflow: "hidden"}} onDayPress={dateselected} showSixWeeks={true} theme={{ calendarBackground: "#ffffff", textSectionTitleColor: "#2b3760", selectedDayBackgroundColor: "#3665ff", selectedDayTextColor: "#ffffff", todayTextColor: "#0fc625", dayTextColor: "#27272e", textDisabledColor: "#c0c0c0", arrowColor: "#607bd2", monthTextColor: "#3756c6", textMonthFontWeight: "bold", textDayFontWeight: "500", textMonthFontSize: 18, textDayFontSize: 14, }} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue"}}} />
             </View>
             <Text style={[styles.logotext,{marginTop:30,marginBottom:10,fontSize: 18+textsizenumber,color:"#8effa1"}]}>
-              Best Time: {besttime !== null ? timecalc(besttime) : "No best time yet"}
+              Best Time: {besttime !== null && besttime !== 9999999999 ? timecalc(besttime) : "No best time yet"}
             </Text>
             <Text style={[styles.logotext,{marginTop:20,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
             <TouchableOpacity onPress={() => router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties) }})} style={[styles.playbutton,{marginBottom:80}]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>

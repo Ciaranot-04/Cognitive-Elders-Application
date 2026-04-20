@@ -19,6 +19,28 @@ export default function Signup() {
   const [confirm, setConfirm] = useState("");
   const [type, setType] = useState("Elderly");
 
+  function validateInputs() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+
+    if (!emailRegex.test(email.trim())) {
+      Alert.alert("Enter a valid email address");
+      return false;
+    }
+
+    if (!passwordRegex.test(password)) {
+      Alert.alert("Password must be at least 8 characters and contain at least 1 letter and 1 number");
+      return false;
+    }
+
+    if (!passwordRegex.test(confirm)) {
+      Alert.alert("Confirm password must be at least 8 characters and contain at least 1 letter and 1 number");
+      return false;
+    }
+
+    return true;
+  }
+
   //this handles signup function
   //only ran when the sign up button is pressed
   const signup = async () => {
@@ -28,6 +50,11 @@ export default function Signup() {
       Alert.alert("Please fill in all fields");
       return;
     }
+
+    if (!validateInputs()) {
+      return;
+    }
+
     //if confirm password and password dont match
     if (password !== confirm) {
       //notify user
@@ -39,7 +66,7 @@ export default function Signup() {
     //helped with what to use to make a call to my database
     try {
       // create user in Firebase Auth
-      const user = await createUserWithEmailAndPassword(auth, email, password);
+      const user = await createUserWithEmailAndPassword(auth, email.trim(), password);
       const uid = user.user.uid;
 
       // pass uid to next screen
@@ -64,9 +91,28 @@ export default function Signup() {
           <Text style={{ color: "white" }}>{type === "Elderly" ? "Elderly Individual" : "Care Taker"}</Text>
         </TouchableOpacity>
       </View>
-      <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none"/>
-      <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry/>
-      <TextInput style={styles.input} placeholder="Confirm Password" value={confirm} onChangeText={setConfirm} secureTextEntry/>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={(text) => setEmail(text.replace(/\s/g, "").toLowerCase())}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={(text) => setPassword(text.replace(/\s/g, ""))}
+        secureTextEntry
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        value={confirm}
+        onChangeText={(text) => setConfirm(text.replace(/\s/g, ""))}
+        secureTextEntry
+      />
       {/*on click run signup function*/}
       <TouchableOpacity onPress={signup} style={styles.signupbutton}>
         <Text style={styles.buttont}>Sign Up</Text>

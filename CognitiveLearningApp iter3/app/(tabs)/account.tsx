@@ -4,8 +4,6 @@ Student ID: C00297672
 Date: 27/02/2026
 */
 
-//NOTE THIS PAGE IS NOT USED RIGHT NOW
-
 //import important and used modules
 import { Ionicons } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';

@@ -29,11 +29,37 @@ export default function Details() {
   const tt = "0.00";
   const ts = "Default";
 
+  function validateInputs() {
+    const nameRegex = /^[A-Za-z]+$/;
+    const dobRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+    if (!nameRegex.test(firstName.trim())) {
+      Alert.alert('First name must contain letters only');
+      return false;
+    }
+
+    if (!nameRegex.test(lastName.trim())) {
+      Alert.alert('Last name must contain letters only');
+      return false;
+    }
+
+    if (!dobRegex.test(dob.trim())) {
+      Alert.alert('Date must be in DD/MM/YYYY format');
+      return false;
+    }
+
+    return true;
+  }
+
   const data = async () => {
     //if one of these is not filled in
     if (!firstName || !lastName || !dob) {
       //notify user
       Alert.alert('All fields are Required');
+      return;
+    }
+
+    if (!validateInputs()) {
       return;
     }
 
@@ -43,18 +69,19 @@ export default function Details() {
       return;
     }
 
-
     const generatelinkcode = (length = 8) => {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = '';
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
 
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
 
-    return result;
+      return result;
     };
+
     const usercode = generatelinkcode();
+
     try {
       //send this to the database creating a user of UID and give it these fields
       if(acc==="Elderly"){
@@ -68,6 +95,7 @@ export default function Details() {
           textsize: ts,
           UID: uid,
           acctype: acc,
+          besttime: 9999999999,
           uniquecode: usercode,
         });
       }
@@ -104,9 +132,25 @@ export default function Details() {
       <Text style={styles.logotext}>Shapes</Text>
       <Text style={styles.subtitle}>Let's Get Started..</Text>
       {/*data fields*/}
-      <TextInput style={styles.input} placeholder="First Name" value={firstName} onChangeText={setFirstName} />
-      <TextInput style={styles.input} placeholder="Last Name" value={lastName} onChangeText={setLastName}/>
-      <TextInput style={styles.input} placeholder="DD/MM/YYYY" value={dob} onChangeText={setDob}/>
+      <TextInput
+        style={styles.input}
+        placeholder="First Name"
+        value={firstName}
+        onChangeText={(text) => setFirstName(text.replace(/[^A-Za-z]/g, ""))}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Last Name"
+        value={lastName}
+        onChangeText={(text) => setLastName(text.replace(/[^A-Za-z]/g, ""))}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="DD/MM/YYYY"
+        value={dob}
+        onChangeText={(text) => setDob(text.replace(/[^0-9/]/g, ""))}
+        maxLength={10}
+      />
       {/*Finish sign up button and creates the user by running the function*/}
       <TouchableOpacity onPress={data} style={styles.nextingbutton}>
         <Text style={styles.buttont}>Finish</Text>
