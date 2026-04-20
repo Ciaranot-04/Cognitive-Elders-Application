@@ -2,6 +2,7 @@
   "patterns": [
     {
       "id": 1,
+      "difficulty": "easy",
       "layout": [
         ["orange", "blue"],
         ["yellow", "red"],
@@ -12,6 +13,7 @@
     },
     {
       "id": 2,
+      "difficulty": "easy",
       "layout": [
         ["green", "red"],
         ["blue", "orange"],
@@ -22,6 +24,7 @@
     },
     {
       "id": 3,
+      "difficulty": "easy",
       "layout": [
         ["red", "green"],
         ["yellow", "blue"],
@@ -32,6 +35,7 @@
     },
     {
       "id": 4,
+      "difficulty": "easy",
       "layout": [
         ["yellow", "green"],
         ["red", "blue"],
@@ -42,6 +46,7 @@
     },
     {
       "id": 5,
+      "difficulty": "easy",
       "layout": [
         ["blue", "orange"],
         ["green", "yellow"],
@@ -52,6 +57,7 @@
     },
     {
       "id": 6,
+      "difficulty": "easy",
       "layout": [
         ["orange", "yellow"],
         ["blue", "green"],
@@ -62,6 +68,7 @@
     },
     {
       "id": 7,
+      "difficulty": "easy",
       "layout": [
         ["green", "blue"],
         ["orange", "red"],
@@ -72,6 +79,7 @@
     },
     {
       "id": 8,
+      "difficulty": "easy",
       "layout": [
         ["red", "yellow"],
         ["green", "orange"],
@@ -82,6 +90,7 @@
     },
     {
       "id": 9,
+      "difficulty": "easy",
       "layout": [
         ["yellow", "blue"],
         ["orange", "green"],
@@ -92,6 +101,7 @@
     },
     {
       "id": 10,
+      "difficulty": "easy",
       "layout": [
         ["blue", "red"],
         ["yellow", "orange"],
@@ -99,7 +109,248 @@
         ["orange", "green"],
         ["red", "yellow"]
       ]
+    },
+
+    {
+      "id": 11,
+      "difficulty": "medium",
+      "layout": [
+        ["orange", "blue", "pink"],
+        ["yellow", "red", "purple"],
+        ["green", "orange", "pink"],
+        ["blue", "yellow", "white"],
+        ["red", "green", "grey"],
+        ["white", "grey", "purple"]
+      ]
+    },
+    {
+      "id": 12,
+      "difficulty": "medium",
+      "layout": [
+        ["blue", "pink", "orange"],
+        ["red", "purple", "yellow"],
+        ["orange", "green", "pink"],
+        ["yellow", "white", "blue"],
+        ["green", "grey", "red"],
+        ["grey", "purple", "white"]
+      ]
+    },
+    {
+      "id": 13,
+      "difficulty": "medium",
+      "layout": [
+        ["pink", "orange", "blue"],
+        ["purple", "yellow", "red"],
+        ["pink", "green", "orange"],
+        ["white", "blue", "yellow"],
+        ["grey", "red", "green"],
+        ["purple", "white", "grey"]
+      ]
+    },
+    {
+      "id": 14,
+      "difficulty": "medium",
+      "layout": [
+        ["orange", "pink", "blue"],
+        ["yellow", "purple", "red"],
+        ["green", "pink", "orange"],
+        ["blue", "white", "yellow"],
+        ["red", "grey", "green"],
+        ["white", "purple", "grey"]
+      ]
+    },
+    {
+      "id": 15,
+      "difficulty": "medium",
+      "layout": [
+        ["blue", "orange", "pink"],
+        ["red", "yellow", "purple"],
+        ["orange", "pink", "green"],
+        ["yellow", "blue", "white"],
+        ["green", "red", "grey"],
+        ["grey", "white", "purple"]
+      ]
+    },
+    {
+      "id": 16,
+      "difficulty": "medium",
+      "layout": [
+        ["pink", "blue", "orange"],
+        ["purple", "red", "yellow"],
+        ["pink", "orange", "green"],
+        ["white", "yellow", "blue"],
+        ["grey", "green", "red"],
+        ["purple", "grey", "white"]
+      ]
+    },
+    {
+      "id": 17,
+      "difficulty": "medium",
+      "layout": [
+        ["orange", "blue", "pink"],
+        ["yellow", "purple", "red"],
+        ["green", "orange", "pink"],
+        ["blue", "white", "yellow"],
+        ["red", "grey", "green"],
+        ["white", "purple", "grey"]
+      ]
+    },
+    {
+      "id": 18,
+      "difficulty": "medium",
+      "layout": [
+        ["blue", "pink", "orange"],
+        ["red", "purple", "yellow"],
+        ["orange", "green", "pink"],
+        ["yellow", "white", "blue"],
+        ["green", "grey", "red"],
+        ["grey", "purple", "white"]
+      ]
+    },
+    {
+      "id": 19,
+      "difficulty": "medium",
+      "layout": [
+        ["pink", "orange", "blue"],
+        ["purple", "yellow", "red"],
+        ["pink", "green", "orange"],
+        ["white", "blue", "yellow"],
+        ["grey", "red", "green"],
+        ["purple", "white", "grey"]
+      ]
+    },
+    {
+      "id": 20,
+      "difficulty": "medium",
+      "layout": [
+        ["orange", "pink", "blue"],
+        ["yellow", "red", "purple"],
+        ["green", "pink", "orange"],
+        ["blue", "yellow", "white"],
+        ["red", "green", "grey"],
+        ["white", "grey", "purple"]
+      ]
+    },
+
+    {
+      "id": 21,
+      "difficulty": "hard",
+      "layout": [
+        ["orange","pink","blue","green","pink","orange"],
+        ["yellow","red","purple","red","green","grey"],
+        ["green","pink","orange","blue","yellow","white"],
+        ["blue","yellow","white","white","grey","purple"],
+        ["red","green","grey","yellow","red","purple"],
+        ["white","grey","purple","orange","pink","blue"]
+      ]
+    },
+    {
+      "id": 22,
+      "difficulty": "hard",
+      "layout": [
+        ["pink","orange","green","blue","orange","pink"],
+        ["red","yellow","grey","purple","red","green"],
+        ["orange","green","blue","white","yellow","pink"],
+        ["yellow","blue","white","grey","white","purple"],
+        ["green","red","purple","red","grey","yellow"],
+        ["grey","white","purple","pink","orange","blue"]
+      ]
+    },
+    {
+      "id": 23,
+      "difficulty": "hard",
+      "layout": [
+        ["blue","green","pink","orange","pink","green"],
+        ["purple","red","yellow","grey","red","purple"],
+        ["orange","blue","white","yellow","pink","green"],
+        ["white","yellow","blue","grey","white","orange"],
+        ["grey","green","red","purple","red","yellow"],
+        ["purple","white","grey","blue","orange","pink"]
+      ]
+    },
+    {
+      "id": 24,
+      "difficulty": "hard",
+      "layout": [
+        ["orange","blue","pink","green","pink","orange"],
+        ["yellow","purple","red","grey","red","green"],
+        ["green","orange","pink","blue","white","yellow"],
+        ["blue","white","yellow","grey","white","purple"],
+        ["red","green","purple","red","grey","yellow"],
+        ["white","grey","purple","orange","pink","blue"]
+      ]
+    },
+    {
+      "id": 25,
+      "difficulty": "hard",
+      "layout": [
+        ["pink","blue","orange","green","orange","pink"],
+        ["red","yellow","purple","grey","red","green"],
+        ["orange","green","pink","blue","white","yellow"],
+        ["yellow","white","blue","grey","white","purple"],
+        ["green","red","grey","purple","red","yellow"],
+        ["grey","white","purple","orange","pink","blue"]
+      ]
+    },
+    {
+      "id": 26,
+      "difficulty": "hard",
+      "layout": [
+        ["green","pink","orange","blue","orange","pink"],
+        ["grey","red","yellow","purple","red","green"],
+        ["pink","orange","green","white","yellow","blue"],
+        ["white","blue","yellow","grey","white","purple"],
+        ["red","green","purple","red","grey","yellow"],
+        ["purple","white","grey","blue","orange","pink"]
+      ]
+    },
+    {
+      "id": 27,
+      "difficulty": "hard",
+      "layout": [
+        ["orange","green","pink","blue","pink","orange"],
+        ["yellow","red","grey","purple","red","green"],
+        ["green","pink","orange","blue","white","yellow"],
+        ["blue","white","yellow","grey","white","purple"],
+        ["red","green","purple","red","grey","yellow"],
+        ["white","grey","purple","orange","pink","blue"]
+      ]
+    },
+    {
+      "id": 28,
+      "difficulty": "hard",
+      "layout": [
+        ["pink","orange","blue","green","orange","pink"],
+        ["red","yellow","purple","grey","red","green"],
+        ["orange","green","pink","blue","white","yellow"],
+        ["yellow","white","blue","grey","white","purple"],
+        ["green","red","grey","purple","red","yellow"],
+        ["grey","white","purple","orange","pink","blue"]
+      ]
+    },
+    {
+      "id": 29,
+      "difficulty": "hard",
+      "layout": [
+        ["blue","pink","orange","green","pink","orange"],
+        ["purple","red","yellow","grey","red","green"],
+        ["orange","green","blue","white","yellow","pink"],
+        ["white","yellow","blue","grey","white","purple"],
+        ["green","red","purple","red","grey","yellow"],
+        ["grey","white","purple","orange","pink","blue"]
+      ]
+    },
+    {
+      "id": 30,
+      "difficulty": "hard",
+      "layout": [
+        ["orange","pink","blue","green","pink","orange"],
+        ["yellow","red","purple","red","green","grey"],
+        ["green","pink","orange","blue","yellow","white"],
+        ["blue","yellow","white","white","grey","purple"],
+        ["red","green","grey","yellow","red","purple"],
+        ["white","grey","purple","orange","pink","blue"]
+      ]
     }
   ]
 }
-

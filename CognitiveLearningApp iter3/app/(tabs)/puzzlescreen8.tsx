@@ -19,6 +19,7 @@ export default function puz2() {
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
+  const difficulty = (params.difficulty as string) || "hard";
   const email = params.email as string;
   let textsize = params.textsize as string;
   let puz2score = 0;
@@ -34,11 +35,32 @@ export default function puz2() {
   if(textsize=="Default"){
     textsizenumber = 0;
   }
+  let extratime = 0;
+  if(difficulty=="easy"){
+    extratime = 0;
+  }
+  if(difficulty=="medium"){
+    extratime = 20;
+  }
+  if(difficulty=="hard"){
+    extratime = 30;
+  }
+
+  let speeds = 1600;
+  if(difficulty=="easy"){
+    speeds = 0;
+  }
+  if(difficulty=="medium"){
+    speeds = 1350;
+  }
+  if(difficulty=="hard"){
+    speeds = 1000;
+  }
 
   //get a random puzzle from the selection available in puzzles2.JSON
   const [puzzlelog] = React.useState(() => {
-    //return a map of all puzzles
-    return puzzles2.patterns.map(puz => ({
+    const difficultyuse = difficulty=="hard" ? "medium" : difficulty;
+    return puzzles2.patterns.filter(puz => puz.difficulty === difficultyuse).map(puz => ({
       id: puz.id,
       answer: puz.answer,
       layout: puz.layout,
@@ -61,10 +83,15 @@ export default function puz2() {
   const layout = userspuzzle.layout;
   const answer = userspuzzle.answer;
 
+  let answercolours = ["red", "green", "blue", "orange", "yellow"];
+  if(difficulty=="medium" || difficulty=="hard"){
+    answercolours = ["red", "green", "blue", "orange", "yellow", "purple", "white", "grey", "pink"];
+  }
+
   //here we set up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
-  const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
+  const [time, settime] = React.useState(carriedtime); React.useEffect(() => {const timer = setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(timer);
   }, []);
-  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(time);
+  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {const pagetimer = setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(pagetimer);
       }, []);
 
   //perform countdown when the page loads
@@ -89,7 +116,7 @@ export default function puz2() {
       return;
     }
     //rest the countdown timer
-    const t = setTimeout(() => setIndex(i => i + 1), 1500);
+    const t = setTimeout(() => setIndex(i => i + 1), speeds);
     return () => clearTimeout(t);
   }, [index, phase]);
 
@@ -97,22 +124,22 @@ export default function puz2() {
   function answered(colour: string) {
     //if correct go to next puzzle screen
     if (colour === answer) {
-      if (pagetime >= 90) {
+      if (pagetime >= 90 + extratime) {
               puz2score = 0;
           } 
-      else if (pagetime >= 65) {
+      else if (pagetime >= 65 + extratime) {
           puz2score = 5;
       } 
-      else if (pagetime >= 55) {
+      else if (pagetime >= 55 + extratime) {
           puz2score = 20;
       } 
-      else if (pagetime >= 45) {
+      else if (pagetime >= 45 + extratime) {
           puz2score = 40;
       } 
-      else if (pagetime >= 35) {
+      else if (pagetime >= 35 + extratime) {
           puz2score = 60;
       } 
-      else if (pagetime >= 25) {
+      else if (pagetime >= 25 + extratime) {
           puz2score = 80;
       } 
       else {
@@ -148,7 +175,7 @@ export default function puz2() {
         <Text style={styles.text}>Memorise the colour that appears the most!</Text>
         {phase === 'answer' && (
           <View style={styles.row}>
-            {["red", "green", "blue", "orange", "yellow"].map(color => (
+            {answercolours.map(color => (
               <TouchableOpacity
                 key={color}
                 onPress={() => answered(color)}
@@ -187,14 +214,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   sub2container:{
-    marginTop: 100,
-    marginBottom: 30,
+    marginTop: 20,
     flex: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   sub3container:{
-    flex: 4,
+    flex: 5,
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
@@ -203,7 +229,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 8,
-    marginBottom: 20,
+    marginBottom: 1,
   },
   text:{
     fontSize: 18,
@@ -219,10 +245,13 @@ const styles = StyleSheet.create({
     marginTop: 20, 
     justifyContent: 'space-around', 
     width: '90%',
+    flexWrap: 'wrap',
+    gap: 10,
   },
   answer:{
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
     borderRadius: 10,
+    margin: 4,
   }
 });

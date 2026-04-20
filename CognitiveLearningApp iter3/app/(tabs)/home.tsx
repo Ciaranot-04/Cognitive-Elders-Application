@@ -7,9 +7,11 @@ Date: 27/02/2026
 //import important and used modules
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
+import { doc, getDoc } from "firebase/firestore";
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Calendar, DateData } from "react-native-calendars";
+import { db } from "./config";
 
 //our function component for this page, the logical stuff
 export default function Home() {
@@ -19,7 +21,27 @@ export default function Home() {
   const email = params.email as string;
   let textsize = params.textsize as string;
   const [selectedDate, setSelectedDate] = React.useState("");
-  
+  const [name, setname] = React.useState("");
+
+  React.useEffect(() => {
+    getUserCode();
+  }, []);
+
+  const getUserCode = async () => {
+    try {
+      const userRef = doc(db, "Users", uid);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        setname(userSnap.data().FirstName);
+      } else {
+        console.log("User not found");
+      }
+
+    } catch (error) {
+      console.log("Error getting code:", error);
+    }
+  };
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -52,9 +74,9 @@ export default function Home() {
         </View>
         {/*mid section container*/}
         <View style={styles.sub2container}>
-            <Text style={[styles.logotext,{marginTop:10,marginBottom:10,color:"#3a4c87",fontSize: 22+textsizenumber}]}>Performance Overview</Text>
+            <Text style={[styles.logotext,{marginTop:10,marginBottom:10,color:"#3a4c87",fontSize: 22+textsizenumber}]}>{name}'s Performance Overview</Text>
             <View style={{ padding: 15,height: 320,overflow: "hidden", alignItems: "center"}}>
-              <Calendar style={{ width: 320}} onDayPress={dateselected} showSixWeeks={true} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue"}}} />
+              <Calendar style={{ width: 320,overflow: "hidden"}} onDayPress={dateselected} showSixWeeks={true} theme={{ calendarBackground: "#ffffff", textSectionTitleColor: "#2b3760", selectedDayBackgroundColor: "#3665ff", selectedDayTextColor: "#ffffff", todayTextColor: "#0fc625", dayTextColor: "#27272e", textDisabledColor: "#c0c0c0", arrowColor: "#607bd2", monthTextColor: "#3756c6", textMonthFontWeight: "bold", textDayFontWeight: "500", textMonthFontSize: 18, textDayFontSize: 14, }} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue"}}} />
             </View>
             <Text style={[styles.logotext,{marginTop:130,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
             {/*starts puzzle track*/}
@@ -113,6 +135,7 @@ const styles = StyleSheet.create({
     flex: 8,
     justifyContent: 'center',
     padding: 20,
+    marginTop:20
   },
   sub3container:{
     flex: 1,

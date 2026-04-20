@@ -11,10 +11,8 @@ import puzzles from '../puzzles/puzzles8.json';
 
 export default function puz8() {
   const params = useLocalSearchParams();
-  const todaytime = params.todaytime as string;
   const uid = params.uid as string;
   const email = params.email as string;
-  const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
 
   const [selectedp] = React.useState(() => {
@@ -83,7 +81,7 @@ export default function puz8() {
       Puzzlescores[7] = puz8scores;
       router.push({
         pathname: "/puzzlescreen3",
-        params: { time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize}
+        params: { time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, textsize: textsize}
       });
     } 
     else {

@@ -14,11 +14,10 @@ import puzzles from '../puzzles/puzzles.json';
 export default function puz1() {
   //pull and assign variables from passed router push
   const params = useLocalSearchParams();
-  const todaytime = params.todaytime as string;
-  const besttime = params.besttime as string;
   const uid = params.uid as string;
   const email = params.email as string;
   let textsize = params.textsize as string;
+  const difficulty = (params.difficulty as string) || "hard";
   let puz1score = 0;
   let puzzleScores = [0,0,0,0,0,0,0,0];
 
@@ -34,22 +33,57 @@ export default function puz1() {
     textsizenumber = 0;
   }
 
+  let squaresize = 0;
+  if(difficulty=="easy"){
+    squaresize = 50;
+  }
+  if(difficulty=="medium"){
+    squaresize = 45;
+  }
+  if(difficulty=="hard"){
+    squaresize = 45;
+  }
+  let extratime = 0;
+  if(difficulty=="easy"){
+    extratime = 0;
+  }
+  if(difficulty=="medium"){
+    extratime = 8;
+  }
+  if(difficulty=="hard"){
+    extratime = 15;
+  }
+
   //here we set up our timer, it is the first page so it starts at 0, it increments every second
-  const [time, settime] = React.useState(0); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
+  const [time, settime] = React.useState(0); React.useEffect(() => {const timer = setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(timer);
     }, []);
-  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(time);
+  const [pagetime, settimep] = React.useState(0); React.useEffect(() => {const pagetimer = setInterval(() => {settimep(prev => prev + 1);},1000);return () => clearInterval(pagetimer);
     }, []);
 
   //here we select a pattern from the JSON file puzzles.json
   const [pattern] = React.useState(() => {
-    const layouts = puzzles.patterns;
-    //we pick a random number and return the puzzle of that id
-    const i = Math.floor(Math.random() * layouts.length);
-    return layouts[i];
+    const patterns = puzzles.patterns;
+
+    let start = 0;
+    let end = 10;
+
+    if(difficulty=="medium"){
+      start = 10;
+      end = 20;
+    }
+    if(difficulty=="hard"){
+      start = 20;
+      end = 30;
+    }
+
+    const i = Math.floor(Math.random() * (end - start)) + start;
+    return patterns[i];
   });
 
   //grid variables setup using use states
-  const [gridsaved, gridsetter] = React.useState<string[][]>(pattern.layout);
+  const [gridsaved, gridsetter] = React.useState<string[][]>(
+    pattern.layout.map(row => [...row])
+  );
   const [remaining, setcolours] = React.useState<string[]>(gridsaved.flat());
   const grid = [];
   //set up the variables and their set functions using use states
@@ -60,29 +94,29 @@ export default function puz1() {
   //once all squares have been matched, redirect the user to the next puzzle screen
   React.useEffect(() => {
         if (remaining.length === 0) {
-          if (pagetime >= 75) {
+          if (pagetime >= 75 + extratime){
               puz1score = 0;
           } 
-          else if (pagetime >= 60) {
+          else if (pagetime >= 60 + extratime){
               puz1score = 5;
           } 
-          else if (pagetime >= 45) {
+          else if (pagetime >= 45 + extratime){
               puz1score = 20;
           } 
-          else if (pagetime >= 30) {
+          else if (pagetime >= 30 + extratime){
               puz1score = 40;
           } 
-          else if (pagetime >= 20) {
+          else if (pagetime >= 20 + extratime){
               puz1score = 60;
           } 
-          else if (pagetime >= 10) {
+          else if (pagetime >= 10 + extratime){
               puz1score = 80;
           } 
           else {
               puz1score = 100;
           }
           puzzleScores[0] = puz1score;
-          router.push({ pathname: "/puzzlescreen2", params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, time: time, puzzleScores: JSON.stringify(puzzleScores) }});
+          router.push({ pathname: "/puzzlescreen2", params: { uid: uid, email: email, textsize: textsize, difficulty: difficulty, time: time, puzzleScores: JSON.stringify(puzzleScores) }});
         }
       },[remaining]);
 
@@ -117,7 +151,7 @@ export default function puz1() {
       }
       //otherwise its a match so we set them transparent
       gridsetter(l => {
-      const newg = [...l];
+      const newg = l.map(row => [...row]);
       newg[frow][fcol] = "transparent";
       newg[row][col] = "transparent";
       return newg;
@@ -144,7 +178,7 @@ export default function puz1() {
       //loop through all colours in the row and assign them a tile
       const colour = row[j];
       gridrows.push(
-      <TouchableOpacity key={`${i}-${j}`} style={[styles.square,{backgroundColor:colour}]} onPress={() => ispressed(i,j,colour)}/>);
+      <TouchableOpacity key={`${i}-${j}`} style={[styles.square,{backgroundColor:colour,width:squaresize,height:squaresize}]} onPress={() => ispressed(i,j,colour)}/>);
     }
     //display it on the screen
     grid.push(

@@ -130,30 +130,12 @@ export default function memHome() {
 
             {linkeduser.trim() !== "" ? (
               <View style={{ padding: 15, height: 320, overflow: "hidden", alignItems: "center" }}>
-                <Calendar
-                  style={{ width: 320 }}
-                  onDayPress={dateselected}
-                  showSixWeeks={true}
-                  hideExtraDays={false}
-                  markedDates={{
-                    [selectedDate]: { selected: true, selectedColor: "blue" }
-                  }}
-                />
+                <Calendar style={{ width: 320 }} onDayPress={dateselected} showSixWeeks={true} hideExtraDays={false} markedDates={{[selectedDate]: { selected: true, selectedColor: "blue" }}}/>
               </View>
             ) : (
               <View style={styles.linkbox}>
-                <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber, color: "#3a4c87" }]}>
-                  Link to a user
-                </Text>
-
-                <TextInput
-                  style={[styles.input, { fontSize: 16 + textsizenumber }]}
-                  placeholder="Enter link code"
-                  placeholderTextColor="#777"
-                  value={linkcode}
-                  onChangeText={setLinkCode}
-                />
-
+                <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber, color: "#3a4c87" }]}>Link to a user</Text>
+                <TextInput style={[styles.input, { fontSize: 16 + textsizenumber }]} placeholder="Enter link code" placeholderTextColor="#777" value={linkcode} onChangeText={setLinkCode} />
                 <TouchableOpacity style={styles.linkButton} onPress={findacc}>
                   <Text style={[styles.buttont, { fontSize: 18 + textsizenumber }]}>
                     Link Account
