@@ -157,63 +157,47 @@ export default function Account() {
         >
           <Ionicons name="arrow-back-circle-outline" size={40} color="#ffffff" />
         </TouchableOpacity>
-        <Text style={styles.logotext}>Squares</Text>
+        <Text style={styles.logotext}>Shapes</Text>
       </View>
-
       <View style={styles.sub2container}>
-        <Text style={[styles.logotext, { marginBottom: 20}]}>{name}'s Acount Management</Text>
+        <Text style={[styles.headertxt, { marginBottom: 20, padding:10}]}>{name}'s Acount Management</Text>
         <Text style={styles.subtitle}>Choose text size.</Text>
-
         <TouchableOpacity style={styles.row}>
           <Text style={[styles.selected,{backgroundColor:smallsel}]} onPress={() => updatetextsmaller(uid)}>
             Smaller
           </Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.row}>
           <Text style={[styles.selected,{backgroundColor:defaultsel}]} onPress={() => updatetextdefault(uid)}>
             Default
           </Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.row}>
           <Text style={[styles.selected,{backgroundColor:largesel}]} onPress={() => updatetextlarger(uid)}>
             Larger
           </Text>
         </TouchableOpacity>
-
         <Text style={styles.subtitle}>Click To Reveal Profile Link Code</Text>
-
-        <TouchableOpacity
-          style={[ styles.inputtoggle, { backgroundColor: showCode ? "#25377f" : "#ffffff" }]}
-          onPress={() => setShowCode(!showCode)}
-        >
+        <TouchableOpacity style={[ styles.inputtoggle, { backgroundColor: showCode ? "#25377f" : "#ffffff" }]} onPress={() => setShowCode(!showCode)}>
           <Text style={{ color: showCode ? "white" : "black", fontSize: 18 }}>
             {showCode ? code : "Link Code"}
           </Text>
         </TouchableOpacity>
-
         {showCode && (
-          <TouchableOpacity
-            style={[styles.inputtoggle, { backgroundColor: "#25377f" }]}
-            onPress={copyCode}
-          >
+          <TouchableOpacity style={[styles.inputtoggle, { backgroundColor: "#25377f" }]} onPress={copyCode} >
             <Text style={{ color: "white" }}>
               Copy to Clipboard
             </Text>
           </TouchableOpacity>
         )}
-
         <Text style={styles.text}>ONLY SHARE WITH TRUSTED INDIVIDUALS</Text>
       </View>
-
       <View style={styles.bottomcontainer}>
         <TouchableOpacity style={styles.logoutButton} onPress={() => router.push('/')}>
           <View>
             <Text style={styles.deleteText}>Log Out</Text>
           </View>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.deleteButton} onPress={del}>
           <Text style={styles.deleteText}>Delete Account</Text>
         </TouchableOpacity>
@@ -226,6 +210,17 @@ export default function Account() {
 const styles = StyleSheet.create({
   logotext:{
     fontSize: 26,
+    color: '#ffffff',
+    fontFamily: 'verdana',
+    marginBottom:20,
+    textShadowColor:'rgba(0,0,0,0.8)',
+    textShadowOffset:{ width:1,height:1},
+    fontWeight: 'bold',
+    textShadowRadius:4,
+    textAlign:'center',
+  },
+  headertxt:{
+    fontSize: 24,
     color: '#ffffff',
     fontFamily: 'verdana',
     marginBottom:20,
@@ -305,7 +300,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   subcontainer:{
-    flex: 0.7,
+    flex: 0.9,
     justifyContent: 'space-between',
     marginTop:40,
     flexDirection: 'row',

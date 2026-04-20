@@ -11,7 +11,7 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import puzzles2 from '../puzzles/puzzles2.json';
 
 //our function component for this page, the logical stuff
-export default function puz2() {
+export default function puz8() {
   //pull and assign variables from passed router push
   const params = useLocalSearchParams();
   const todaytime = params.todaytime as string;
@@ -19,7 +19,15 @@ export default function puz2() {
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
-  const difficulty = (params.difficulty as string) || "hard";
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
+  const difficulty = difficulties.language || "easy";
   const email = params.email as string;
   let textsize = params.textsize as string;
   let puz2score = 0;
@@ -46,9 +54,9 @@ export default function puz2() {
     extratime = 30;
   }
 
-  let speeds = 1600;
+  let speeds = 0;
   if(difficulty=="easy"){
-    speeds = 0;
+    speeds = 1600;
   }
   if(difficulty=="medium"){
     speeds = 1350;
@@ -162,7 +170,7 @@ export default function puz2() {
     //the visual components
     <View style={styles.maincontainer}>
       <View style={[styles.subcontainer, { marginTop: 20 }]}>
-        <Text style={styles.logotext}>Squares</Text>
+        <Text style={styles.logotext}>Shapes</Text>
       </View>
 
       <View style={styles.sub2container}>

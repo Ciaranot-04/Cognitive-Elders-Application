@@ -2,63 +2,213 @@
   "patterns": [
     {
       "id": 1,
+      "difficulty": "easy",
       "sentence": "____ is my favourite colour.",
       "answer": "Red",
       "options": ["Wet", "Red", "Read", "Thread"]
     },
     {
       "id": 2,
+      "difficulty": "easy",
       "sentence": "I like to ____ cookies.",
       "answer": "eat",
       "options": ["meet", "cheat", "eat", "pork"]
     },
     {
       "id": 3,
+      "difficulty": "easy",
       "sentence": "I ____ dogs.",
       "answer": "like",
       "options": ["like", "smelly", "stick", "chopsticks"]
     },
     {
       "id": 4,
+      "difficulty": "easy",
       "sentence": "The Queen of England is a ____.",
       "answer": "lady",
       "options": ["man", "lady", "butter", "throne"]
     },
     {
       "id": 5,
+      "difficulty": "easy",
       "sentence": "I like ____ coat.",
       "answer": "your",
       "options": ["you're", "you", "your", "youth"]
     },
     {
       "id": 6,
+      "difficulty": "easy",
       "sentence": "I went on a trip to ____.",
       "answer": "Japan",
       "options": ["pan", "sleep", "Japan", "south"]
     },
     {
       "id": 7,
+      "difficulty": "easy",
       "sentence": "I went ____ the shop.",
       "answer": "to",
       "options": ["two", "too", "to", "toot"]
     },
     {
       "id": 8,
+      "difficulty": "easy",
       "sentence": "The cat sat on the ____.",
       "answer": "mat",
       "options": ["tornado", "mat", "walk", "sky"]
     },
     {
       "id": 9,
+      "difficulty": "easy",
       "sentence": "A dog likes to ____ a ball.",
       "answer": "chase",
       "options": ["read", "sleep", "swim", "chase"]
     },
     {
       "id": 10,
+      "difficulty": "easy",
       "sentence": "We see stars at ____.",
       "answer": "night",
       "options": ["night", "light", "bright", "right"]
+    },
+    {
+      "id": 11,
+      "difficulty": "medium",
+      "sentence": "The scientist explained that water ____ at 100°C under standard conditions.",
+      "answer": "boils",
+      "options": ["boil", "boils", "boiling", "boiled"]
+    },
+    {
+      "id": 12,
+      "difficulty": "medium",
+      "sentence": "The Great Wall of China is one of the landmarks that ____ visible from space is often debated.",
+      "answer": "are",
+      "options": ["becoming", "are", "was", "be"]
+    },
+    {
+      "id": 13,
+      "difficulty": "medium",
+      "sentence": "A number of scientists ____ contributed to the discovery of penicillin.",
+      "answer": "have",
+      "options": ["has", "having", "have", "is"]
+    },
+    {
+      "id": 14,
+      "difficulty": "medium",
+      "sentence": "A number of ancient civilizations ____ along major rivers.",
+      "answer": "developed",
+      "options": ["developed", "develops", "developing", "develop"]
+    },
+    {
+      "id": 15,
+      "difficulty": "medium",
+      "sentence": "The capital of Canada ____ known for its cold winters.",
+      "answer": "is",
+      "options": ["are", "were", "is", "be"]
+    },
+    {
+      "id": 16,
+      "difficulty": "medium",
+      "sentence": "The invention of the internet ____ global communication dramatically.",
+      "answer": "transformed",
+      "options": ["transform", "transforms", "transformed", "transforming"]
+    },
+    {
+      "id": 17,
+      "difficulty": "medium",
+      "sentence": "The discovery of electricity ____ a turning point in human history.",
+      "answer": "was",
+      "options": ["was", "were", "are", "be"]
+    },
+    {
+      "id": 18,
+      "difficulty": "medium",
+      "sentence": "The discovery of penicillin ____ saved millions of lives.",
+      "answer": "has",
+      "options": ["have", "has", "having", "are"]
+    },
+    {
+      "id": 19,
+      "difficulty": "medium",
+      "sentence": "The theory of evolution ____ widely accepted in modern science.",
+      "answer": "is",
+      "options": ["are", "is", "were", "be"]
+    },
+    {
+      "id": 20,
+      "difficulty": "medium",
+      "sentence": "Awww you are so cute, ____ you.",
+      "answer": "no",
+      "options": ["no", "wasn't", "chicken", "doorbell"]
+    },
+    {
+      "id": 21,
+      "difficulty": "hard",
+      "sentence": "The committee reached a unanimous decision after hours of intense ____.",
+      "answer": "deliberation",
+      "options": ["hesitation", "deliberation", "confusion", "neglect"]
+    },
+    {
+      "id": 22,
+      "difficulty": "hard",
+      "sentence": "Despite the complexity of the problem, she managed to provide a remarkably ____ explanation.",
+      "answer": "coherent",
+      "options": ["vague", "coherent", "reluctant", "careless"]
+    },
+    {
+      "id": 23,
+      "difficulty": "hard",
+      "sentence": "The researcher’s conclusions were called into question due to a lack of ____ evidence.",
+      "answer": "empirical",
+      "options": ["empirical", "theoretical", "exaggerated", "superficial"]
+    },
+    {
+      "id": 24,
+      "difficulty": "hard",
+      "sentence": "Optimal play frequently involves evaluating not just the current game state, but the ____ consequences of each possible move.",
+      "answer": "cumulative",
+      "options": ["immediate", "negligible", "cumulative", "random"]
+    },
+    {
+      "id": 25,
+      "difficulty": "hard",
+      "sentence": "Stroke mechanics require precise timing between arm pull and body rotation to maintain continuous ____ throughout the stroke cycle.",
+      "answer": "acceleration",
+      "options": ["acceleration", "deceleration", "stagnation", "hesitation"]
+    },
+    {
+      "id": 26,
+      "difficulty": "hard",
+      "sentence": "The dog, tired from the long run, lay down beside its owner, ____ it refused to move again.",
+      "answer": "after which",
+      "options": ["while", "that", "where", "after which"]
+    },
+    {
+      "id": 27,
+      "difficulty": "hard",
+      "sentence": "The chef prepared the sauce as though it ____ a delicate chemical reaction rather than a simple recipe.",
+      "answer": "were",
+      "options": ["is", "won't", "were", "has been"]
+    },
+    {
+      "id": 28,
+      "difficulty": "hard",
+      "sentence": "The chef prepared the dish as though he ____ years of experience in fine dining.",
+      "answer": "had",
+      "options": ["has", "had", "have", "having"]
+    },
+    {
+      "id": 29,
+      "difficulty": "hard",
+      "sentence": "The artist worked carefully so that no element ____ disrupt the overall composition.",
+      "answer": "would",
+      "options": ["does", "did", "would", "will"]
+    },
+    {
+      "id": 30,
+      "difficulty": "hard",
+      "sentence": "The mechanic fixed the issue ____ the car was running smoothly again.",
+      "answer": ",",
+      "options": [",", ";", ":", "—"]
     }
   ]
 }

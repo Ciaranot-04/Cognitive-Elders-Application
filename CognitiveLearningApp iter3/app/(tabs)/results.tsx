@@ -6,7 +6,7 @@ Date: 27/02/2026
 
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
@@ -20,11 +20,11 @@ export default function results() {
   const carriedtime = Number(params.time);
   const time = carriedtime;
   let textsize = params.textsize as string;
-  const lang = (Puzzlescores[6] + Puzzlescores[7]) / 2;
-  const memory = Puzzlescores[1];
-  const numeracy = (Puzzlescores[3] + Puzzlescores[5]) / 2;
-  const visual = (Puzzlescores[0] + Puzzlescores[5]) / 2;
-  const logic = (Puzzlescores[2] + Puzzlescores[4]) / 2;
+  const lang = 100;
+  const memory = 100;
+  const numeracy = 100;
+  const visual = 100;
+  const logic = 100;
   const dataforchart = { labels: ["Logic", "Numeracy", "Memory", "Language", "Visual"],
     datasets: [ { data: [logic, numeracy, memory, lang, visual], },],
   };
@@ -39,25 +39,78 @@ export default function results() {
     textsizenumber = -5;
   }
 
+  function nextDifficulty(current: string, score: number) {
+    const levels = ["easy", "medium", "hard"];
+    const currentIndex = levels.indexOf(current);
+    const safeIndex = currentIndex === -1 ? 0 : currentIndex;
+
+    if (score >= 80) {
+      return levels[Math.min(safeIndex + 1, levels.length - 1)];
+    }
+
+    if (score <= 40) {
+      return levels[Math.max(safeIndex - 1, 0)];
+    }
+
+    return levels[safeIndex];
+  }
+
+  async function updateUserDifficulties() {
+    try {
+      const userRef = doc(db, "Users", uid);
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+        console.log("User not found");
+        return;
+      }
+
+      const userData = userSnap.data();
+
+      const currentDifficulties = userData.difficulties || {
+        logic: "easy",
+        numeracy: "easy",
+        memory: "easy",
+        language: "easy",
+        visual: "easy",
+      };
+
+      const updatedDifficulties = {
+        logic: nextDifficulty(currentDifficulties.logic, logic),
+        numeracy: nextDifficulty(currentDifficulties.numeracy, numeracy),
+        memory: nextDifficulty(currentDifficulties.memory, memory),
+        language: nextDifficulty(currentDifficulties.language, lang),
+        visual: nextDifficulty(currentDifficulties.visual, visual),
+      };
+
+      await updateDoc(userRef, {
+        difficulties: updatedDifficulties,
+      });
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  }
 
   async function userdaylog() {
-  try {
-    const today = new Date();
-    const todays = today.toISOString().split("T")[0];
-
-    const perf = collection(db, "Users", uid, "performances");
-    await addDoc(perf, { date: todays, uid, lang, memory, visual, logic, numeracy, });
-  } catch (error) {
-    console.error("Error: ", error);
+    try {
+      const today = new Date();
+      const todays = today.toISOString().split("T")[0];
+      const perf = collection(db, "Users", uid, "performances");
+      await addDoc(perf, { date: todays, uid, lang, memory, visual, logic, numeracy, });
+    } catch (error) {
+      console.error("Error: ", error);
+    }
   }
-}
 
-React.useEffect(() => {
-  if (uid) {
-    userdaylog();
-  }
-}, []);
-
+  React.useEffect(() => {
+    async function savedata() {
+      if (uid) {
+        await userdaylog();
+        await updateUserDifficulties();
+      }
+    }
+    savedata();
+  }, []);
 
   function iconsetter(score: number) {
     if (score <= 40) {
@@ -69,21 +122,20 @@ React.useEffect(() => {
     return <Ionicons name="ellipse" size={20} color="#626060" />;
   }
 
-return (
+  return (
     <View style={styles.maincontainer}>
       <View style={styles.sub1container}>
-        <Text style={[styles.logotext, { marginTop: 20, fontSize: 26 + textsizenumber }]}>Squares</Text>
+        <Text style={[styles.logotext, { marginTop: 20, fontSize: 26 + textsizenumber }]}>Shapes</Text>
       </View>
-      <View style={styles.sub2container}>
+      <View style={[styles.sub2container,{overflow:"hidden"}]}>
         <Text style={[styles.logotext, { marginBottom: 20 }]}>Your Performance Scores Today</Text>
         <BarChart
           data={dataforchart}
           width={370}
-          height={290}
-          fromZero={true}
+          height={299}
+          segments={5}
           yAxisLabel=""
           yAxisSuffix=""
-          segments={5}
           showValuesOnTopOfBars={true}
           chartConfig={{
             backgroundGradientFrom: "#5f82ff",

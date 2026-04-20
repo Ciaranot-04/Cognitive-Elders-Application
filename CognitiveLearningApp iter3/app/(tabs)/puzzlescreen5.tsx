@@ -94,7 +94,7 @@ export default function puz5() {
             puz5score = 0;
           }
           Puzzlescores[4] = puz5score;
-          router.push({ pathname: "/puzzlescreen6", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+          router.push({ pathname: "/puzzlescreen7", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
       } else {
           Alert.alert("Incorrect, Try again.");
       }
@@ -103,14 +103,14 @@ export default function puz5() {
   return (
     <View style={styles.maincontainer}>
         <View style={[styles.subcontainer,{marginTop:20}]}>
-            <Text style={styles.logotext}>Squares</Text>
+            <Text style={styles.logotext}>Shapes</Text>
         </View>
         <View style={styles.sub2container}>
-            {grid}
+          <View style={styles.backdrop}>{grid}</View>
         </View>
         <View style={styles.sub3container}>
             <Text style={styles.logotext}>{time}s</Text>
-            <Text style={styles.text}>Which colour is missing?</Text>
+            <Text style={styles.text}>What colour is missing in the sequence?</Text>
             <View style={styles.ansrow1}>
                 {/* Answer tiles */}
                 <TouchableOpacity key={'1'} style={[styles.anssquare, {backgroundColor: options[0]}]} onPress={() => ansr(options[0])}>
@@ -150,6 +150,16 @@ const styles = StyleSheet.create({
     textShadowColor:'rgba(0,0,0,0.8)',
     textShadowOffset:{ width:1,height:1},
     textAlign: 'center',
+  },
+  backdrop:{
+    borderRadius:25,
+    backgroundColor:"#3c5290",
+    justifyContent:"space-evenly",
+    marginRight:30,
+    paddingLeft:8,
+    paddingTop:10,
+    paddingBottom:10,
+    padding:1,
   },
   maincontainer:{
     flex: 1,

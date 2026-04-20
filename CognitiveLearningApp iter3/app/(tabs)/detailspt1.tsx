@@ -101,7 +101,7 @@ export default function Details() {
   return (
     //the visual components
     <View style={styles.mcontainer}>
-      <Text style={styles.logotext}>Squares</Text>
+      <Text style={styles.logotext}>Shapes</Text>
       <Text style={styles.subtitle}>Let's Get Started..</Text>
       {/*data fields*/}
       <TextInput style={styles.input} placeholder="First Name" value={firstName} onChangeText={setFirstName} />

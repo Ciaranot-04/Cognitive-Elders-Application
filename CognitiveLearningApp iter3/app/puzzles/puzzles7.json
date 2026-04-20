@@ -1,64 +1,214 @@
 {
   "patterns": [
     {
-      "id": 1,
-      "answer": "cat",
-      "scrambled": "tca",
-      "category": "Animal"
+    "id": 1,
+    "difficulty": "easy",
+    "answer": "cat",
+    "scrambled": "tca",
+    "category": "Animal"
     },
     {
-      "id": 2,
-      "answer": "apple",
-      "scrambled": "elpap",
-      "category": "Food"
+    "id": 2,
+    "difficulty": "easy",
+    "answer": "apple",
+    "scrambled": "elpap",
+    "category": "Food"
     },
     {
-      "id": 3,
-      "answer": "water",
-      "scrambled": "terwa",
-      "category": "Drink"
+    "id": 3,
+    "difficulty": "easy",
+    "answer": "water",
+    "scrambled": "terwa",
+    "category": "Drink"
     },
     {
-      "id": 4,
-      "answer": "pie",
-      "scrambled": "eip",
-      "category": "Food"
+    "id": 4,
+    "difficulty": "easy",
+    "answer": "pie",
+    "scrambled": "eip",
+    "category": "Food"
     },
     {
-      "id": 5,
-      "answer": "tree",
-      "scrambled": "reet",
-      "category": "Nature"
+    "id": 5,
+    "difficulty": "easy",
+    "answer": "tree",
+    "scrambled": "reet",
+    "category": "Nature"
     },
     {
-      "id": 6,
-      "answer": "truck",
-      "scrambled": "krtuc",
-      "category": "Vehicle"
+    "id": 6,
+    "difficulty": "easy",
+    "answer": "truck",
+    "scrambled": "krtuc",
+    "category": "Vehicle"
     },
     {
-      "id": 7,
-      "answer": "stamp",
-      "scrambled": "pmtsa",
-      "category": "Post / Mail"
+    "id": 7,
+    "difficulty": "easy",
+    "answer": "stamp",
+    "scrambled": "pmtsa",
+    "category": "Post / Mail"
     },
     {
-      "id": 8,
-      "answer": "smile",
-      "scrambled": "lesim",
-      "category": "Expression"
+    "id": 8,
+    "difficulty": "easy",
+    "answer": "smile",
+    "scrambled": "lesim",
+    "category": "Expression"
     },
     {
-      "id": 9,
-      "answer": "spray",
-      "scrambled": "yraps",
-      "category": "Household"
+    "id": 9,
+    "difficulty": "easy",
+    "answer": "spray",
+    "scrambled": "yraps",
+    "category": "Household"
     },
     {
-      "id": 10,
-      "answer": "towel",
-      "scrambled": "welot",
-      "category": "Bathroom"
+    "id": 10,
+    "difficulty": "easy",
+    "answer": "towel",
+    "scrambled": "welot",
+    "category": "Bathroom"
+    },
+    {
+    "id": 11,
+    "difficulty": "medium",
+    "answer": "cucumber",
+    "scrambled": "rebucumc",
+    "category": "Food"
+    },
+    {
+    "id": 12,
+    "difficulty": "medium",
+    "answer": "criminal",
+    "scrambled": "rclimian",
+    "category": "Crime"
+    },
+    {
+    "id": 13,
+    "difficulty": "medium",
+    "answer": "enraged",
+    "scrambled": "geraden",
+    "category": "Emotion"
+    },
+    {
+    "id": 14,
+    "difficulty": "medium",
+    "answer": "anything",
+    "scrambled": "nythgain",
+    "category": "General"
+    },
+    {
+    "id": 15,
+    "difficulty": "medium",
+    "answer": "question",
+    "scrambled": "tseuqion",
+    "category": "General"
+    },
+    {
+    "id": 16,
+    "difficulty": "medium",
+    "answer": "sometimes",
+    "scrambled": "sotmseime",
+    "category": "General"
+    },
+    {
+    "id": 17,
+    "difficulty": "medium",
+    "answer": "sublime",
+    "scrambled": "blusime",
+    "category": "Description"
+    },
+    {
+    "id": 18,
+    "difficulty": "medium",
+    "answer": "sweetness",
+    "scrambled": "sestewens",
+    "category": "Taste"
+    },
+    {
+    "id": 19,
+    "difficulty": "medium",
+    "answer": "colourful",
+    "scrambled": "urololcfu",
+    "category": "Description"
+    },
+    {
+    "id": 20,
+    "difficulty": "medium",
+    "answer": "portrait",
+    "scrambled": "tiraropt",
+    "category": "Art"
+    },
+    {
+    "id": 21,
+    "difficulty": "hard",
+    "answer": "committee",
+    "scrambled": "mtoecitme",
+    "category": "Group"
+    },
+    {
+    "id": 22,
+    "difficulty": "hard",
+    "answer": "experiment",
+    "scrambled": "emxptrenie",
+    "category": "Science"
+    },
+    {
+    "id": 23,
+    "difficulty": "hard",
+    "answer": "asteroid",
+    "scrambled": "oditares",
+    "category": "Space"
+    },
+    {
+    "id": 24,
+    "difficulty": "hard",
+    "answer": "nauseous",
+    "scrambled": "esunouas",
+    "category": "Health"
+    },
+    {
+    "id": 25,
+    "difficulty": "hard",
+    "answer": "evolution",
+    "scrambled": "vouteolni",
+    "category": "Science"
+    },
+    {
+    "id": 26,
+    "difficulty": "hard",
+    "answer": "university",
+    "scrambled": "ntrsiuviey",
+    "category": "Education"
+    },
+    {
+    "id": 27,
+    "difficulty": "hard",
+    "answer": "skeleton",
+    "scrambled": "lotekens",
+    "category": "Body"
+    },
+    {
+    "id": 28,
+    "difficulty": "hard",
+    "answer": "confidence",
+    "scrambled": "fcednoneci",
+    "category": "Emotion"
+    },
+    {
+    "id": 29,
+    "difficulty": "hard",
+    "answer": "conversation",
+    "scrambled": "ntroaecvsnoi",
+    "category": "Communication"
+    },
+    {
+    "id": 30,
+    "difficulty": "hard",
+    "answer": "spontaneous",
+    "scrambled": "tpssanoeoun",
+    "category": "Description"
     }
   ]
 }

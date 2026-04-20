@@ -17,9 +17,19 @@ export default function puz7() {
   const email = params.email as string;
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
+  const difficulty = difficulties.language || "easy";
   const [selectedPuzzle] = React.useState(() => {
-    const randomIndex = Math.floor(Math.random() * puzzles.patterns.length);
-    return puzzles.patterns[randomIndex];
+    const matching = puzzles.patterns.filter(p => p.difficulty === difficulty);
+    const randomIndex = Math.floor(Math.random() * matching.length);
+    return matching[randomIndex];
   });
   const [scrambled] = React.useState(selectedPuzzle.scrambled);
   const [correctanswer] = React.useState(selectedPuzzle.answer);
@@ -90,41 +100,22 @@ export default function puz7() {
   return (
     <View style={styles.maincontainer}>
       <View style={[styles.subcontainer, { marginTop: 20 }]}>
-        <Text style={styles.logotext}>Squares</Text>
+        <Text style={styles.logotext}>Shapes</Text>
       </View>
       <View style={styles.sub2container}>
-        <Text style={[styles.subtitle, { fontSize: 19 + textsizenumber, marginBottom: 25 }]}>
-          Category: {category}
-        </Text>
+        <Text style={[styles.subtitle, { fontSize: 19 + textsizenumber, marginBottom: 25 }]}>Category: {category}</Text>
         <View style={styles.puzzlesec}>
-          <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber }]}>
-            Unscramble this word
-          </Text>
-          <Text style={[styles.scrambled, { fontSize: 32 + textsizenumber }]}>
-            {scrambled}
-          </Text>
-          <TextInput
-            style={[styles.input, { fontSize: 18 + textsizenumber }]}
-            placeholder="Type your answer"
-            placeholderTextColor="#d9e3ff"
-            value={userAnswer}
-            onChangeText={setuanswer}
-            autoCapitalize="none"
-          />
+          <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber }]}>Unscramble this word</Text>
+          <Text style={[styles.scrambled, { fontSize: 32 + textsizenumber }]}>{scrambled}</Text>
+          <TextInput style={[styles.input, { fontSize: 18 + textsizenumber }]} placeholder="Type your answer" placeholderTextColor="#d9e3ff" value={userAnswer} onChangeText={setuanswer} autoCapitalize="none" />
           <TouchableOpacity style={styles.submitb} onPress={submit}>
-            <Text style={[styles.submitbt, { fontSize: 18 + textsizenumber }]}>
-              Submit
-            </Text>
+            <Text style={[styles.submitbt, { fontSize: 18 + textsizenumber }]}>Submit</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.sub3container}>
-        <Text style={[styles.text, { fontSize: 18 + textsizenumber }]}>
-          {message}
-        </Text>
-        <Text style={[styles.logotext, { fontSize: 24 + textsizenumber }]}>
-          {time}s
-        </Text>
+        <Text style={[styles.text, { fontSize: 18 + textsizenumber }]}>{message}</Text>
+        <Text style={[styles.logotext, { fontSize: 24 + textsizenumber }]}>{time}s</Text>
       </View>
     </View>
   );

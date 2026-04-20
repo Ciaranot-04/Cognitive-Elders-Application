@@ -14,12 +14,20 @@ import puzzles from '../puzzles/puzzles.json';
 export default function puz1() {
   //pull and assign variables from passed router push
   const params = useLocalSearchParams();
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
   const uid = params.uid as string;
   const email = params.email as string;
   let textsize = params.textsize as string;
-  const difficulty = (params.difficulty as string) || "hard";
+  const difficulty = difficulties.visual || "easy";
   let puz1score = 0;
-  let puzzleScores = [0,0,0,0,0,0,0,0];
+  let puzzleScores = [0,0,0,0,0,0,0];
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -116,7 +124,7 @@ export default function puz1() {
               puz1score = 100;
           }
           puzzleScores[0] = puz1score;
-          router.push({ pathname: "/puzzlescreen2", params: { uid: uid, email: email, textsize: textsize, difficulty: difficulty, time: time, puzzleScores: JSON.stringify(puzzleScores) }});
+          router.push({ pathname: "/puzzlescreen2", params: { uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties), time: time, puzzleScores: JSON.stringify(puzzleScores) }});
         }
       },[remaining]);
 
@@ -191,7 +199,7 @@ export default function puz1() {
     //the visual components
     <View style={styles.maincontainer}>
         <View style={[styles.subcontainer,{marginTop:20}]}>
-            <Text style={styles.logotext}>Squares</Text>
+            <Text style={styles.logotext}>Shapes</Text>
         </View>
         <View style={styles.sub2container}>
           <Text style={styles.text}>Select the colours that Match!</Text>

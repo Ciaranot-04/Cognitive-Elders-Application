@@ -71,7 +71,7 @@ export default function membar() {
         <TouchableOpacity onPress={() => router.push({ pathname: "/memberhub", params: { date: selectedDate, uid, email, textsize, linkeduser: link } })}>
           <Ionicons name="arrow-back-circle-outline" size={40} color="#ffffff" />
         </TouchableOpacity>
-        <Text style={styles.logotext}>Squares</Text>
+        <Text style={styles.logotext}>Shapes</Text>
       </View>
 
       <View style={styles.sub2container}>

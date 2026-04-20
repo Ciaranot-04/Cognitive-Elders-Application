@@ -23,6 +23,15 @@ export default function puz4() {
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz4score = 0;
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
+  const difficulty = difficulties.language || "easy";
 
 
   //text size segment, how we decide the scaleability of the text
@@ -38,13 +47,14 @@ export default function puz4() {
   }
   //generate random puzzle
   const [pattern] = React.useState(() => {
-      const layouts = puzzles.patterns;
-      const i = Math.floor(Math.random() * layouts.length);
-      return layouts[i];
+      const filteredpatterns = puzzles.patterns.filter((pattern) => pattern.difficulty === difficulty);
+      const puzzlepool = filteredpatterns.length > 0 ? filteredpatterns : puzzles.patterns;
+      const i = Math.floor(Math.random() * puzzlepool.length);
+      return puzzlepool[i];
   });
 
   //here we set up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
-  const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
+  const [time, settime] = React.useState(carriedtime); React.useEffect(() => {const timer = setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(timer);
     }, []);
 
   //note down the variables from the puzzles4.json, we take the answer, incorrect, pattern
@@ -95,7 +105,7 @@ export default function puz4() {
               puz4score = 0;
             }
             Puzzlescores[3] = puz4score;
-          router.push({ pathname: "/puzzlescreen5", params: { puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+          router.push({ pathname: "/puzzlescreen5", params: { difficulties: JSON.stringify(difficulties), puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
       } else {
         //wrong notice
         Alert.alert("Incorrect, Try again.");
@@ -105,14 +115,14 @@ export default function puz4() {
     //the visual components
     <View style={styles.maincontainer}>
         <View style={[styles.subcontainer,{marginTop:20}]}>
-            <Text style={styles.logotext}>Squares</Text>
+            <Text style={styles.logotext}>Shapes</Text>
         </View>
         <View style={styles.sub2container}>
             {grid}
         </View>
         <View style={styles.sub3container}>
             <Text style={styles.logotext}>{time}s</Text>
-            <Text style={styles.text}>How Many {col} tiles are there?</Text>
+            <Text style={styles.text}>How many lighter tiles are there?</Text>
             <View style={styles.ansrow1}>
                 <TouchableOpacity key={'1'} style={[styles.anssquare, { backgroundColor: '#273d85' }]} onPress={() => answers(options[0])}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}>

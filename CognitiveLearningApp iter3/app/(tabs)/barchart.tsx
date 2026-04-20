@@ -75,7 +75,7 @@ export default function Account() {
         <TouchableOpacity onPress={() => router.push({ pathname: "/home", params: { date: selectedDate, uid, email, textsize } })}>
           <Ionicons name="arrow-back-circle-outline" size={40} color="#ffffff" />
         </TouchableOpacity>
-        <Text style={styles.logotext}>Squares</Text>
+        <Text style={styles.logotext}>Shapes</Text>
       </View>
 
       <View style={styles.sub2container}>

@@ -113,7 +113,7 @@ export default function memHome() {
     <View style={styles.maincontainer}>
         {/*Top bar segment container*/}
         <View style={styles.sub1container}>
-            <Text style={[styles.logotext,{marginTop:20,fontSize: 26+textsizenumber}]}>Squares</Text>
+            <Text style={[styles.logotext,{marginTop:20,fontSize: 26+textsizenumber}]}>Shapes</Text>
             <TouchableOpacity onPress={() => router.push({ pathname: "/memacc", params: { uid: uid, email: email, textsize: textsize }})}>
                 <View style={[styles.iconstextcontainer,{marginLeft: 140,marginTop:20}]}>
                 <Ionicons name="people-circle-outline" size={40} color="#ffffff" />

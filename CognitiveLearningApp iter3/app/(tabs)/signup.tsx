@@ -55,8 +55,8 @@ export default function Signup() {
     //the visual components
     //container for whole page
     <View style={styles.mcontainer}>
-      <Text style={styles.logotext}>Squares</Text>
-      <Text style={styles.subtitle}>Create your Squares Account Today</Text>
+      <Text style={styles.logotext}>Shapes</Text>
+      <Text style={styles.subtitle}>Create your Shapes Account Today</Text>
       <Text style={styles.subsubtitle}>Select your Account type and fill in the fields below</Text>
       {/* on text entered the respected variables update*/}
       <View>

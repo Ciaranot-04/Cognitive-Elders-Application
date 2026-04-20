@@ -23,6 +23,15 @@ export default function puz3() {
   let textsize = params.textsize as string;
   const [presses, setPresses] = React.useState(1);
   let puz3score = 0;
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
+  const difficulty = difficulties.language || "easy";
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -38,13 +47,14 @@ export default function puz3() {
 
   //generate a random pattern for the puzzle from puzzles3.json
     const [pattern] = React.useState(() => {
-        const layouts = puzzles.patterns;
-        const i = Math.floor(Math.random() * layouts.length);
-        return layouts[i];
+        const filteredpatterns = puzzles.patterns.filter((pattern) => pattern.difficulty === difficulty);
+        const puzzlepool = filteredpatterns.length > 0 ? filteredpatterns : puzzles.patterns;
+        const i = Math.floor(Math.random() * puzzlepool.length);
+        return puzzlepool[i];
     });
 
     //here we set up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
-    const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
+    const [time, settime] = React.useState(carriedtime); React.useEffect(() => {const timer = setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(timer);
       }, []);
 
     //get the right answers tiles coords in the array
@@ -80,7 +90,7 @@ export default function puz3() {
               puz3score = 0;
             }
             Puzzlescores[2] = puz3score;
-            router.push({ pathname: "/puzzlescreen4", params: { puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+            router.push({ pathname: "/puzzlescreen4", params: { difficulties: JSON.stringify(difficulties), puzzleScores: JSON.stringify(Puzzlescores), time: time, uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
         } 
         else {
             //otherwise rest
@@ -107,7 +117,7 @@ export default function puz3() {
     //the visual components
     <View style={styles.maincontainer}>
         <View style={[styles.subcontainer,{marginTop:20}]}>
-            <Text style={styles.logotext}>Squares</Text>
+            <Text style={styles.logotext}>Shapes</Text>
         </View>
         <View style={styles.sub2container}>
             {grid}

@@ -2,67 +2,204 @@
   "patterns": [
     {
       "id": 1,
+      "difficulty": "easy",
       "layout": ["red", "blue", "red", "blue", "red", "transparent", "red", "blue"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "blue",
-      "wrong1": "red",
-      "wrong2": "green",
-      "wrong3": "orange"
+      "answershape": "square-outline",
+      "wrongs": ["red","green","orange"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 2,
+      "difficulty": "easy",
       "layout": ["green", "yellow", "orange", "green", "yellow", "transparent", "green", "yellow"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "orange",
-      "wrong1": "red",
-      "wrong2": "green",
-      "wrong3": "blue"
+      "answershape": "square-outline",
+      "wrongs": ["red","green","blue"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 3,
+      "difficulty": "easy",
       "layout": ["yellow", "blue", "green", "red", "yellow", "blue", "transparent", "red"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "green",
-      "wrong1": "yellow",
-      "wrong2": "blue",
-      "wrong3": "orange"
+      "answershape": "square-outline",
+      "wrongs": ["yellow","blue","orange"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 4,
+      "difficulty": "easy",
       "layout": ["blue", "blue", "red", "green", "blue", "transparent", "red", "green"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "blue",
-      "wrong1": "red",
-      "wrong2": "yellow",
-      "wrong3": "green"
+      "answershape": "square-outline",
+      "wrongs": ["red","yellow","green"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 5,
+      "difficulty": "easy",
       "layout": ["orange", "green", "blue", "orange", "green", "blue", "orange", "transparent"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "green",
-      "wrong1": "red",
-      "wrong2": "yellow",
-      "wrong3": "blue"
+      "answershape": "square-outline",
+      "wrongs": ["red","yellow","blue"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 6,
+      "difficulty": "easy",
       "layout": ["red", "red", "red", "yellow", "red", "red", "transparent", "yellow"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "red",
-      "wrong1": "blue",
-      "wrong2": "green",
-      "wrong3": "orange"
+      "answershape": "square-outline",
+      "wrongs": ["blue","green","orange"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 7,
+      "difficulty": "easy",
       "layout": ["red", "green", "blue", "red", "green", "blue", "transparent", "green"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "red",
-      "wrong1": "yellow",
-      "wrong2": "blue",
-      "wrong3": "orange"
+      "answershape": "square-outline",
+      "wrongs": ["yellow","blue","green"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
     },
     {
       "id": 8,
+      "difficulty": "easy",
       "layout": ["blue", "green", "blue", "green", "blue", "green", "transparent", "green"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
       "answer": "blue",
-      "wrong1": "red",
-      "wrong2": "yellow",
-      "wrong3": "orange"
+      "answershape": "square-outline",
+      "wrongs": ["red","yellow","green"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
+    },
+    {
+      "id": 9,
+      "difficulty": "easy",
+      "layout": ["red", "red", "blue", "red", "red", "blue", "transparent", "red"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
+      "answer": "red",
+      "answershape": "square-outline",
+      "wrongs": ["yellow","blue","green"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
+    },
+    {
+      "id": 10,
+      "difficulty": "easy",
+      "layout": ["blue", "transparent", "blue", "green", "blue", "green", "blue", "green"],
+      "shapes": ["square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline","square-outline"],
+      "answer": "green",
+      "answershape": "square-outline",
+      "wrongs": ["red","yellow","blue"],
+      "wrongsshapes": ["square-outline","square-outline","square-outline"]
+    },
+    {
+      "id": 11,
+      "difficulty": "medium",
+      "layout": ["blue","red","transparent","green","blue","red","yellow","green"],
+      "shapes": ["square-outline","ellipse-outline","ellipse-outline","triangle-outline","square-outline","ellipse-outline","ellipse-outline","triangle-outline"],
+      "answer": "yellow",
+      "answershape":"ellipse-outline",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["ellipse-outline","triangle-outline","triangle-outline"]
+    },
+    {
+      "id": 12,
+      "difficulty": "medium",
+      "layout": ["red","yellow","red","blue","red","transparent","red","blue"],
+      "shapes": ["square-outline","triangle-outline","ellipse-outline","ellipse-outline","square-outline","triangle-outline","ellipse-outline","ellipse-outline"],
+      "answer": "yellow",
+      "answershape":"triangle-outline",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["ellipse-outline","ellipse-outline","triangle-outline"]
+    },
+    {
+      "id": 13,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"circle",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["circle","triangle","triangle"]
+    },
+    {
+      "id": 14,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"circle",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["circle","triangle","triangle"]
+    },
+    {
+      "id": 15,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"circle",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["circle","triangle","triangle"]
+    },
+    {
+      "id": 16,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"circle",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["circle","triangle","triangle"]
+    },
+    {
+      "id": 17,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"circle",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["circle","triangle","triangle"]
+    },
+    {
+      "id": 18,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"circle",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["circle","triangle","triangle"]
+    },
+    {
+      "id": 19,
+      "difficulty": "medium",
+      "layout": [],
+      "shapes": [],
+      "answer": "yellow",
+      "answershape":"ellipse-outline",
+      "wrongs": ["red", "yellow", "green"],
+      "wrongsshapes": ["ellipse-outline","triangle","triangle"]
+    },
+    {
+      "id": 20,
+      "difficulty": "medium",
+      "layout": ["blue","transparent","blue","blue","blue","blue","blue","blue"],
+      "shapes": ["ellipse-outline","star","ellipse-outline","triangle-outline","ellipse-outline","ellipse-outline","star"],
+      "answer": "blue",
+      "answershape":"star",
+      "wrongs": ["blue", "blue", "blue"],
+      "wrongsshapes": ["ellipse-outline","triangle-outline","square-outline"]
     }
+
   ]
 }

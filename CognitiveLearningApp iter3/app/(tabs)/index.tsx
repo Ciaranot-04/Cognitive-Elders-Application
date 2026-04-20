@@ -67,8 +67,8 @@ export default function Login() {
     //the visual components
     <View style={styles.maincontainer}>
       {/* top section */}
-      <Text style={styles.logotext}>Squares</Text>
-      <Text style={styles.subtitle}>Structured Support for Cognitive Health.</Text>
+      <Text style={styles.logotext}>Shapes</Text>
+      <Text style={styles.subtitle}>Shape your mind, Shape your health.</Text>
       {/* updates email and password as they are typed */}
       <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail}/>
       <TextInput style={styles.input}placeholder="Password"value={password}onChangeText={setPassword}secureTextEntry/>
@@ -76,7 +76,7 @@ export default function Login() {
       <TouchableOpacity style={styles.loginbutton} onPress={logintesting}><Text style={styles.buttont}>Log In</Text></TouchableOpacity>
       {/* signup redirect section */}
       <View style={styles.signupcontainer}>
-        <Text style={styles.signup}>New to Squares?</Text>
+        <Text style={styles.signup}>New to Shapes?</Text>
         <TouchableOpacity><Text style={styles.signuplinked} onPress={() => router.push('/signup')}>Sign Up Here!</Text></TouchableOpacity>
       </View>
     </View>

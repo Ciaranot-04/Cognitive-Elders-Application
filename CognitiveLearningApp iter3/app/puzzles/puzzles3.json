@@ -2,6 +2,7 @@
   "patterns": [
     {
       "id": 1,
+      "difficulty": "easy",
       "answeri": 1,
       "answerj": 0,
       "layout": [
@@ -14,6 +15,7 @@
     },
     {
       "id": 2,
+      "difficulty": "easy",
       "answeri": 0,
       "answerj": 1,
       "layout": [
@@ -26,6 +28,7 @@
     },
     {
       "id": 3,
+      "difficulty": "easy",
       "answeri": 2,
       "answerj": 0,
       "layout": [
@@ -38,6 +41,7 @@
     },
     {
       "id": 4,
+      "difficulty": "easy",
       "answeri": 3,
       "answerj": 1,
       "layout": [
@@ -50,6 +54,7 @@
     },
     {
       "id": 5,
+      "difficulty": "easy",
       "answeri": 4,
       "answerj": 0,
       "layout": [
@@ -62,6 +67,7 @@
     },
     {
       "id": 6,
+      "difficulty": "easy",
       "answeri": 1,
       "answerj": 1,
       "layout": [
@@ -74,6 +80,7 @@
     },
     {
       "id": 7,
+      "difficulty": "easy",
       "answeri": 0,
       "answerj": 0,
       "layout": [
@@ -86,6 +93,7 @@
     },
     {
       "id": 8,
+      "difficulty": "easy",
       "answeri": 2,
       "answerj": 1,
       "layout": [
@@ -98,6 +106,7 @@
     },
     {
       "id": 9,
+      "difficulty": "easy",
       "answeri": 3,
       "answerj": 0,
       "layout": [
@@ -110,6 +119,7 @@
     },
     {
       "id": 10,
+      "difficulty": "easy",
       "answeri": 4,
       "answerj": 1,
       "layout": [
@@ -118,6 +128,266 @@
         ["orange", "orange"],
         ["orange", "orange"],
         ["orange", "green"]
+      ]
+    },
+    {
+      "id": 11,
+      "difficulty": "medium",
+      "answeri": 1,
+      "answerj": 1,
+      "layout": [
+        ["#6900AF", "#6900AF"],
+        ["#6900AF", "#9200F4"],
+        ["#6900AF", "#6900AF"],
+        ["#6900AF", "#6900AF"],
+        ["#6900AF", "#6900AF"]
+      ]
+    },
+    {
+      "id": 12,
+      "difficulty": "medium",
+      "answeri": 3,
+      "answerj": 0,
+      "layout": [
+        ["#6375FF", "#6375FF"],
+        ["#6375FF", "#6375FF"],
+        ["#6375FF", "#6375FF"],
+        ["#4451AF", "#6375FF"],
+        ["#6375FF", "#6375FF"]
+      ]
+    },
+    {
+      "id": 13,
+      "difficulty": "medium",
+      "answeri": 0,
+      "answerj": 1,
+      "layout": [
+        ["#00BA03", "#00FF04"],
+        ["#00BA03", "#00BA03"],
+        ["#00BA03", "#00BA03"],
+        ["#00BA03", "#00BA03"],
+        ["#00BA03", "#00BA03"]
+      ]
+    },
+    {
+      "id": 14,
+      "difficulty": "medium",
+      "answeri": 4,
+      "answerj": 0,
+      "layout": [
+        ["#FFE100", "#FFE100"],
+        ["#FFE100", "#FFE100"],
+        ["#FFE100", "#FFE100"],
+        ["#FFE100", "#FFE100"],
+        ["#BAA400", "#FFE100"]
+      ]
+    },
+    {
+      "id": 15,
+      "difficulty": "medium",
+      "answeri": 2,
+      "answerj": 1,
+      "layout": [
+        ["#0077C1", "#0077C1"],
+        ["#0077C1", "#0077C1"],
+        ["#0077C1", "#009DFF"],
+        ["#0077C1", "#0077C1"],
+        ["#0077C1", "#0077C1"]
+      ]
+    },
+    {
+      "id": 16,
+      "difficulty": "medium",
+      "answeri": 1,
+      "answerj": 0,
+      "layout": [
+        ["#BF6600", "#BF6600"],
+        ["#BF6600", "#BF6600"],
+        ["#BF6600", "#BF6600"],
+        ["#BF6600", "#D87300"],
+        ["#BF6600", "#BF6600"]
+      ]
+    },
+    {
+      "id": 17,
+      "difficulty": "medium",
+      "answeri": 3,
+      "answerj": 1,
+      "layout": [
+        ["#2B0B20", "#2B0B20"],
+        ["#2B0B20", "#2B0B20"],
+        ["#2B0B20", "#2B0B20"],
+        ["#2B0B20", "#4F153A"],
+        ["#2B0B20", "#2B0B20"]
+      ]
+    },
+    {
+      "id": 18,
+      "difficulty": "medium",
+      "answeri": 0,
+      "answerj": 0,
+      "layout": [
+        ["#00A2BF", "#006577"],
+        ["#006577", "#006577"],
+        ["#006577", "#006577"],
+        ["#006577", "#006577"],
+        ["#006577", "#006577"]
+      ]
+    },
+    {
+      "id": 19,
+      "difficulty": "medium",
+      "answeri": 2,
+      "answerj": 0,
+      "layout": [
+        ["#4F4A19", "#4F4A19"],
+        ["#4F4A19", "#4F4A19"],
+        ["#777126", "#4F4A19"],
+        ["#4F4A19", "#4F4A19"],
+        ["#4F4A19", "#4F4A19"]
+      ]
+    },
+    {
+      "id": 20,
+      "difficulty": "medium",
+      "answeri": 4,
+      "answerj": 1,
+      "layout": [
+        ["#BF00A5", "#BF00A5"],
+        ["#BF00A5", "#BF00A5"],
+        ["#BF00A5", "#A0008B"],
+        ["#BF00A5", "#BF00A5"],
+        ["#BF00A5", "#BF00A5"]
+      ]
+    },
+    {
+      "id": 21,
+      "difficulty": "hard",
+      "answeri": 2,
+      "answerj": 1,
+      "layout": [
+        ["#000000", "#000000"],
+        ["#000000", "#000000"],
+        ["#000000", "#1C1C1C"],
+        ["#000000", "#000000"],
+        ["#000000", "#000000"]
+      ]
+    },
+    {
+      "id": 22,
+      "difficulty": "hard",
+      "answeri": 1,
+      "answerj": 1,
+      "layout": [
+        ["#FF00DC", "#FF00DC"],
+        ["#FF00DC", "#E000C2"],
+        ["#FF00DC", "#FF00DC"],
+        ["#FF00DC", "#FF00DC"],
+        ["#FF00DC", "#FF00DC"]
+      ]
+    },
+    {
+      "id": 23,
+      "difficulty": "hard",
+      "answeri": 3,
+      "answerj": 0,
+      "layout": [
+        ["#480087", "#480087"],
+        ["#480087", "#480087"],
+        ["#480087", "#480087"],
+        ["#5500A0", "#480087"],
+        ["#480087", "#480087"]
+      ]
+    },
+    {
+      "id": 24,
+      "difficulty": "hard",
+      "answeri": 0,
+      "answerj": 1,
+      "layout": [
+        ["#187A00", "#146800"],
+        ["#187A00", "#187A00"],
+        ["#187A00", "#187A00"],
+        ["#187A00", "#187A00"],
+        ["#187A00", "#187A00"]
+      ]
+    },
+    {
+      "id": 25,
+      "difficulty": "hard",
+      "answeri": 4,
+      "answerj": 0,
+      "layout": [
+        ["#D6B200", "#D6B200"],
+        ["#D6B200", "#D6B200"],
+        ["#D6B200", "#D6B200"],
+        ["#D6B200", "#D6B200"],
+        ["#E5BB00", "#D6B200"]
+      ]
+    },
+    {
+      "id": 26,
+      "difficulty": "hard",
+      "answeri": 2,
+      "answerj": 0,
+      "layout": [
+        ["#FFFFFF", "#FFFFFF"],
+        ["#FFFFFF", "#FFFFFF"],
+        ["#E8E8E8", "#FFFFFF"],
+        ["#FFFFFF", "#FFFFFF"],
+        ["#FFFFFF", "#FFFFFF"]
+      ]
+    },
+    {
+      "id": 27,
+      "difficulty": "hard",
+      "answeri": 1,
+      "answerj": 1,
+      "layout": [
+        ["#F40008", "#F40008"],
+        ["#F40008", "#BC0006"],
+        ["#F40008", "#F40008"],
+        ["#F40008", "#F40008"],
+        ["#F40008", "#F40008"]
+      ]
+    },
+    {
+      "id": 28,
+      "difficulty": "hard",
+      "answeri": 0,
+      "answerj": 1,
+      "layout": [
+        ["#F4BAE6", "#DDAAD1"],
+        ["#F4BAE6", "#F4BAE6"],
+        ["#F4BAE6", "#F4BAE6"],
+        ["#F4BAE6", "#F4BAE6"],
+        ["#F4BAE6", "#F4BAE6"]
+      ]
+    },
+    {
+      "id": 29,
+      "difficulty": "hard",
+      "answeri": 4,
+      "answerj": 0,
+      "layout": [
+        ["#C8F4E5", "#C8F4E5"],
+        ["#C8F4E5", "#C8F4E5"],
+        ["#C8F4E5", "#C8F4E5"],
+        ["#C8F4E5", "#C8F4E5"],
+        ["#ABD1C3", "#C8F4E5"]
+      ]
+    },
+    {
+      "id": 30,
+      "difficulty": "hard",
+      "answeri": 2,
+      "answerj": 1,
+      "layout": [
+        ["#28D37D", "#28D37D"],
+        ["#28D37D", "#28D37D"],
+        ["#28D37D", "#2CF493"],
+        ["#28D37D", "#28D37D"],
+        ["#28D37D", "#28D37D"]
       ]
     }
   ]

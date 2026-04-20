@@ -2,6 +2,7 @@
   "patterns": [
     {
       "id": 1,
+      "difficulty": "easy",
       "col": "orange",
       "answer": 7,
       "wrong1": 8,
@@ -16,6 +17,7 @@
     },
     {
       "id": 2,
+      "difficulty": "easy",
       "col": "yellow",
       "answer": 5,
       "wrong1": 8,
@@ -30,6 +32,7 @@
     },
     {
       "id": 3,
+      "difficulty": "easy",
       "col": "yellow",
       "answer": 6,
       "wrong1": 7,
@@ -44,6 +47,7 @@
     },
     {
       "id": 4,
+      "difficulty": "easy",
       "col": "red",
       "answer": 5,
       "wrong1": 7,
@@ -58,6 +62,7 @@
     },
     {
       "id": 5,
+      "difficulty": "easy",
       "col": "red",
       "answer": 11,
       "wrong1": 8,
@@ -72,6 +77,7 @@
     },
     {
       "id": 6,
+      "difficulty": "easy",
       "col": "orange",
       "answer": 7,
       "wrong1": 6,
@@ -86,6 +92,7 @@
     },
     {
       "id": 7,
+      "difficulty": "easy",
       "col": "yellow",
       "answer": 5,
       "wrong1": 7,
@@ -100,6 +107,7 @@
     },
     {
       "id": 8,
+      "difficulty": "easy",
       "col": "red",
       "answer": 2,
       "wrong1": 6,
@@ -114,6 +122,7 @@
     },
     {
       "id": 9,
+      "difficulty": "easy",
       "col": "yellow",
       "answer": 10,
       "wrong1": 7,
@@ -128,6 +137,7 @@
     },
     {
       "id": 10,
+      "difficulty": "easy",
       "col": "red",
       "answer": 9,
       "wrong1": 6,
@@ -138,6 +148,326 @@
       "layout": [
         ["red","red","yellow","red","blue","green","red","orange","blue","red"],
         ["blue","green","red","orange","red","red","yellow","red","blue","green"]
+      ]
+    },
+    {
+      "id": 11,
+      "difficulty": "medium",
+      "col": "orange",
+      "answer": 14,
+      "wrong1": 16,
+      "wrong2": 12,
+      "wrong3": 15,
+      "wrong4": 13,
+      "wrong5": 11,
+      "layout": [
+        ["green","orange","red","green","orange","red","orange","blue","orange","green"],
+        ["blue","green","red","green","yellow","orange","green","orange","yellow","orange"],
+        ["orange","blue","green","orange","red","yellow","orange","green","orange","red"],
+        ["yellow","orange","blue","green","orange","red","green","orange","blue","orange"]
+      ]
+    },
+    {
+      "id": 12,
+      "difficulty": "medium",
+      "col": "yellow",
+      "answer": 10,
+      "wrong1": 12,
+      "wrong2": 8,
+      "wrong3": 9,
+      "wrong4": 11,
+      "wrong5": 7,
+      "layout": [
+        ["orange","yellow","green","yellow","green","orange","green","red","green","green"],
+        ["red","green","orange","yellow","yellow","green","blue","green","orange","yellow"],
+        ["green","blue","yellow","orange","red","green","yellow","blue","green","orange"],
+        ["yellow","red","green","blue","orange","yellow","green","red","yellow","blue"]
+      ]
+    },
+    {
+      "id": 13,
+      "difficulty": "medium",
+      "col": "yellow",
+      "answer": 12,
+      "wrong1": 10,
+      "wrong2": 14,
+      "wrong3": 11,
+      "wrong4": 13,
+      "wrong5": 9,
+      "layout": [
+        ["green","blue","orange","yellow","green","blue","yellow","red","yellow","blue"],
+        ["green","blue","yellow","red","green","blue","orange","yellow","green","yellow"],
+        ["yellow","green","blue","orange","yellow","red","green","blue","yellow","orange"],
+        ["blue","yellow","green","red","orange","yellow","blue","green","red","yellow"]
+      ]
+    },
+    {
+      "id": 14,
+      "difficulty": "medium",
+      "col": "red",
+      "answer": 10,
+      "wrong1": 12,
+      "wrong2": 8,
+      "wrong3": 9,
+      "wrong4": 11,
+      "wrong5": 7,
+      "layout": [
+        ["red","blue","red","green","blue","yellow","red","orange","blue","yellow"],
+        ["orange","yellow","blue","red","green","blue","red","blue","green","blue"],
+        ["green","red","yellow","blue","orange","red","green","blue","yellow","red"],
+        ["blue","green","orange","yellow","red","blue","green","red","orange","yellow"]
+      ]
+    },
+    {
+      "id": 15,
+      "difficulty": "medium",
+      "col": "red",
+      "answer": 22,
+      "wrong1": 20,
+      "wrong2": 24,
+      "wrong3": 18,
+      "wrong4": 21,
+      "wrong5": 23,
+      "layout": [
+        ["red","red","blue","red","green","yellow","red","orange","red","red"],
+        ["red","green","yellow","red","red","red","blue","red","green","yellow"],
+        ["red","red","orange","red","blue","red","green","red","yellow","red"],
+        ["blue","red","red","green","red","orange","red","yellow","red","red"]
+      ]
+    },
+    {
+      "id": 16,
+      "difficulty": "medium",
+      "col": "orange",
+      "answer": 14,
+      "wrong1": 12,
+      "wrong2": 16,
+      "wrong3": 13,
+      "wrong4": 15,
+      "wrong5": 11,
+      "layout": [
+        ["orange","orange","yellow","red","green","blue","orange","orange","green","orange"],
+        ["orange","orange","yellow","red","red","green","blue","yellow","red","blue"],
+        ["green","orange","blue","orange","yellow","red","orange","green","orange","blue"],
+        ["red","green","orange","yellow","blue","orange","red","orange","green","orange"]
+      ]
+    },
+    {
+      "id": 17,
+      "difficulty": "medium",
+      "col": "yellow",
+      "answer": 10,
+      "wrong1": 8,
+      "wrong2": 12,
+      "wrong3": 9,
+      "wrong4": 11,
+      "wrong5": 7,
+      "layout": [
+        ["green","green","red","yellow","orange","yellow","green","blue","green","green"],
+        ["blue","orange","green","yellow","yellow","green","red","green","orange","yellow"],
+        ["red","blue","yellow","green","orange","red","green","yellow","blue","green"],
+        ["orange","green","blue","red","yellow","green","orange","blue","yellow","red"]
+      ]
+    },
+    {
+      "id": 18,
+      "difficulty": "medium",
+      "col": "red",
+      "answer": 4,
+      "wrong1": 6,
+      "wrong2": 5,
+      "wrong3": 3,
+      "wrong4": 7,
+      "wrong5": 8,
+      "layout": [
+        ["blue","blue","red","blue","yellow","green","blue","orange","blue","green"],
+        ["yellow","green","blue","orange","blue","blue","red","blue","yellow","blue"],
+        ["green","orange","blue","yellow","green","blue","orange","blue","green","yellow"],
+        ["blue","yellow","green","orange","blue","green","blue","red","orange","red"]
+      ]
+    },
+    {
+      "id": 19,
+      "difficulty": "medium",
+      "col": "yellow",
+      "answer": 20,
+      "wrong1": 18,
+      "wrong2": 22,
+      "wrong3": 19,
+      "wrong4": 21,
+      "wrong5": 17,
+      "layout": [
+        ["yellow","yellow","green","yellow","blue","orange","yellow","red","yellow","yellow"],
+        ["blue","orange","yellow","red","yellow","yellow","green","yellow","blue","orange"],
+        ["yellow","green","yellow","orange","yellow","blue","red","yellow","green","yellow"],
+        ["orange","yellow","blue","yellow","red","yellow","orange","green","yellow","yellow"]
+      ]
+    },
+    {
+      "id": 20,
+      "difficulty": "medium",
+      "col": "red",
+      "answer": 18,
+      "wrong1": 16,
+      "wrong2": 20,
+      "wrong3": 17,
+      "wrong4": 19,
+      "wrong5": 15,
+      "layout": [
+        ["red","red","yellow","red","blue","green","red","orange","blue","red"],
+        ["blue","green","red","orange","red","red","yellow","red","blue","green"],
+        ["red","orange","blue","red","yellow","red","green","red","orange","red"],
+        ["green","red","orange","blue","red","yellow","red","green","red","red"]
+      ]
+    },
+    {
+      "id": 21,
+      "difficulty": "hard",
+      "col": "#9200F4",
+      "answer": 3,
+      "wrong1": 8,
+      "wrong2": 4,
+      "wrong3": 6,
+      "wrong4": 5,
+      "wrong5": 9,
+      "layout": [
+        ["#6900AF","#9200F4","#6900AF","#6900AF","#6900AF","#6900AF","#9200F4","#6900AF","#6900AF","#6900AF"],
+        ["#6900AF","#6900AF","#6900AF","#6900AF","#6900AF","#9200F4","#6900AF","#6900AF","#6900AF","#6900AF"]
+      ]
+    },
+    {
+      "id": 22,
+      "difficulty": "hard",
+      "col": "#4451AF",
+      "answer": 15,
+      "wrong1": 18,
+      "wrong2": 13,
+      "wrong3": 17,
+      "wrong4": 16,
+      "wrong5": 14,
+      "layout": [
+        ["#6375FF","#6375FF","#6375FF","#4451AF","#6375FF","#6375FF","#6375FF","#4451AF","#6375FF","#6375FF"],
+        ["#6375FF","#6375FF","#4451AF","#6375FF","#4451AF","#6375FF","#6375FF","#6375FF","#6375FF","#4451AF"]
+      ]
+    },
+    {
+      "id": 23,
+      "difficulty": "hard",
+      "col": "#00FF04",
+      "answer": 5,
+      "wrong1": 7,
+      "wrong2": 3,
+      "wrong3": 6,
+      "wrong4": 4,
+      "wrong5": 8,
+      "layout": [
+        ["#00BA03","#00BA03","#00FF04","#00BA03","#00BA03","#00BA03","#00FF04","#00BA03","#00BA03","#00BA03"],
+        ["#00BA03","#00BA03","#00BA03","#00BA03","#00FF04","#00BA03","#00FF04","#00BA03","#00BA03","#00FF04"]
+      ]
+    },
+    {
+      "id": 24,
+      "difficulty": "hard",
+      "col": "#BAA400",
+      "answer": 14,
+      "wrong1": 7,
+      "wrong2": 4,
+      "wrong3": 5,
+      "wrong4": 17,
+      "wrong5": 9,
+      "layout": [
+        ["#FFE100","#FFE100","#BAA400","#FFE100","#FFE100","#BAA400","#FFE100","#FFE100","#FFE100","#BAA400"],
+        ["#FFE100","#BAA400","#FFE100","#FFE100","#BAA400","#FFE100","#FFE100","#BAA400","#FFE100","#FFE100"]
+      ]
+    },
+    {
+      "id": 25,
+      "difficulty": "hard",
+      "col": "#009DFF",
+      "answer": 4,
+      "wrong1": 8,
+      "wrong2": 5,
+      "wrong3": 12,
+      "wrong4": 6,
+      "wrong5": 44,
+      "layout": [
+        ["#0077C1","#009DFF","#0077C1","#0077C1","#0077C1","#009DFF","#0077C1","#0077C1","#0077C1","#0077C1"],
+        ["#009DFF","#0077C1","#0077C1","#0077C1","#0077C1","#0077C1","#0077C1","#009DFF","#0077C1","#0077C1"]
+      ]
+    },
+    {
+      "id": 26,
+      "difficulty": "hard",
+      "col": "#4F153A",
+      "answer": 4,
+      "wrong1": 6,
+      "wrong2": 3,
+      "wrong3": 5,
+      "wrong4": 7,
+      "wrong5": 8,
+      "layout": [
+        ["#2B0B20","#2B0B20","#2B0B20","#4F153A","#2B0B20","#2B0B20","#4F153A","#2B0B20","#2B0B20","#2B0B20"],
+        ["#2B0B20","#2B0B20","#4F153A","#2B0B20","#2B0B20","#4F153A","#2B0B20","#2B0B20","#2B0B20","#2B0B20"]
+      ]
+    },
+    {
+      "id": 27,
+      "difficulty": "hard",
+      "col": "#00A2BF",
+      "answer": 4,
+      "wrong1": 7,
+      "wrong2": 8,
+      "wrong3": 6,
+      "wrong4": 3,
+      "wrong5": 9,
+      "layout": [
+        ["#006577","#00A2BF","#006577","#006577","#006577","#00A2BF","#006577","#006577","#006577","#006577"],
+        ["#006577","#006577","#006577","#00A2BF","#006577","#006577","#006577","#006577","#00A2BF","#006577"]
+      ]
+    },
+    {
+      "id": 28,
+      "difficulty": "hard",
+      "col": "#777126",
+      "answer": 4,
+      "wrong1": 6,
+      "wrong2": 3,
+      "wrong3": 5,
+      "wrong4": 2,
+      "wrong5": 8,
+      "layout": [
+        ["#4F4A19","#4F4A19","#777126","#4F4A19","#4F4A19","#4F4A19","#4F4A19","#777126","#4F4A19","#4F4A19"],
+        ["#4F4A19","#777126","#4F4A19","#4F4A19","#4F4A19","#4F4A19","#777126","#4F4A19","#4F4A19","#4F4A19"]
+      ]
+    },
+    {
+      "id": 29,
+      "difficulty": "hard",
+      "col": "#A0008B",
+      "answer": 16,
+      "wrong1": 17,
+      "wrong2": 4,
+      "wrong3": 26,
+      "wrong4": 15,
+      "wrong5": 9,
+      "layout": [
+        ["#A0008B","#A0008B","#BF00A5","#A0008B","#A0008B","#A0008B","#A0008B","#BF00A5","#A0008B","#A0008B"],
+        ["#A0008B","#BF00A5","#A0008B","#A0008B","#A0008B","#A0008B","#BF00A5","#A0008B","#A0008B","#A0008B"]
+      ]
+    },
+    {
+      "id": 30,
+      "difficulty": "hard",
+      "col": "#D87300",
+      "answer": 14,
+      "wrong1": 6,
+      "wrong2": 12,
+      "wrong3": 5,
+      "wrong4": 4,
+      "wrong5": 18,
+      "layout": [
+        ["#D87300","#BF6600","#D87300","#D87300","#D87300","#BF6600","#D87300","#D87300","#BF6600","#D87300"],
+        ["#D87300","#D87300","#BF6600","#D87300","#D87300","#D87300","#BF6600","#D87300","#D87300","#BF6600"]
       ]
     }
   ]

@@ -9,29 +9,35 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import puzzles from '../puzzles/puzzles8.json';
 
-export default function puz8() {
+export default function puz2() {
   const params = useLocalSearchParams();
   const uid = params.uid as string;
   const email = params.email as string;
   const carriedtime = Number(params.time);
-
-  const [selectedp] = React.useState(() => {
-    const randomIndex = Math.floor(Math.random() * puzzles.patterns.length);
-    return puzzles.patterns[randomIndex];
-  });
-
-  const [sentence] = React.useState(selectedp.sentence);
-  const [correctanswer] = React.useState(selectedp.answer);
-  const [options] = React.useState<string[]>(selectedp.options);
-
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz8scores = 0;
-
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
+  const difficulty = difficulties.language || "easy";
+  const [selectedp] = React.useState(() => {
+    const filtered = puzzles.patterns.filter((pattern) => pattern.difficulty === difficulty);
+    const puzzlepool = filtered.length > 0 ? filtered : puzzles.patterns;
+    const randomi = Math.floor(Math.random() * puzzlepool.length);
+    return puzzlepool[randomi];
+  });
+  const [sentence] = React.useState(selectedp.sentence);
+  const [correctanswer] = React.useState(selectedp.answer);
+  const [options] = React.useState<string[]>(selectedp.options);
   const [attempts, setattempts] = React.useState(1);
   const [message, setmessage] = React.useState('');
 
-  // text size logic
   let textsizenumber = 0;
   if (textsize == "Larger") {
     textsizenumber = 5;
@@ -43,7 +49,6 @@ export default function puz8() {
     textsizenumber = 0;
   }
 
-  // timer
   const [time, settime] = React.useState(carriedtime);
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -81,7 +86,7 @@ export default function puz8() {
       Puzzlescores[7] = puz8scores;
       router.push({
         pathname: "/puzzlescreen3",
-        params: { time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, textsize: textsize}
+        params: { time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties)}
       });
     } 
     else {
@@ -93,12 +98,11 @@ export default function puz8() {
   return (
     <View style={styles.maincontainer}>
       <View style={[styles.subcontainer, { marginTop: 20 }]}>
-        <Text style={styles.logotext}>Squares</Text>
+        <Text style={styles.logotext}>Shapes</Text>
       </View>
-
       <View style={styles.sub2container}>
         <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber, marginBottom: 25  }]}>Pick the correct word</Text>
-        <View style={styles.puzzlesec}>
+        <View style={[styles.puzzlesec,{marginBottom:20}]}>
           <Text style={[styles.questionText, { fontSize: 24 + textsizenumber }]}>
             {sentence}
           </Text>
