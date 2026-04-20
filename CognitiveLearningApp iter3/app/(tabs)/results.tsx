@@ -90,13 +90,21 @@ export default function results() {
       console.error("Error: ", error);
     }
   }
+  function timecalc(seconds: number) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
 
+    const calculation = secs < 10 ? `0${secs}` : secs;
+    const fintime = `${mins}:${calculation}`;
+    return fintime;
+  }
+  const finishedtime = timecalc(carriedtime);
   async function userdaylog() {
     try {
       const today = new Date();
       const todays = today.toISOString().split("T")[0];
       const perf = collection(db, "Users", uid, "performances");
-      await addDoc(perf, { date: todays, uid, lang, memory, visual, logic, numeracy, });
+      await addDoc(perf, { date: todays, Time:finishedtime, uid, lang, memory, visual, logic, numeracy, });
     } catch (error) {
       console.error("Error: ", error);
     }
@@ -128,17 +136,18 @@ export default function results() {
         <Text style={[styles.logotext, { marginTop: 20, fontSize: 26 + textsizenumber }]}>Shapes</Text>
       </View>
       <View style={[styles.sub2container,{overflow:"hidden"}]}>
-        <Text style={[styles.logotext, { marginBottom: 20 }]}>Your Performance Scores Today</Text>
+        <Text style={[styles.logotext, { marginBottom: 10, paddingTop:30 }]}>Your Scores Today</Text>
+        <Text style={[styles.buttont, { marginBottom: 20, alignSelf:"center" }]}>Completion Time: {finishedtime}</Text>
         <BarChart
           data={dataforchart}
           width={370}
-          height={299}
-          segments={5}
+          height={350}
           yAxisLabel=""
-          yAxisSuffix=""
           showValuesOnTopOfBars={true}
+          fromZero={true}
+          yAxisSuffix=""
           chartConfig={{
-            backgroundGradientFrom: "#5f82ff",
+            backgroundGradientFrom: "#171f59",
             backgroundGradientTo: "#5f82ff",
             decimalPlaces: 0,
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -199,7 +208,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 20,
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 0,
     marginBottom: 10,
     shadowOpacity: 0.5,
     shadowColor: '#000000',

@@ -181,8 +181,10 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     padding: 20,
+    minHeight: 550,
     backgroundColor: '#5b84e6',
     borderRadius: 16,
+    marginBottom:40
   },
   questionText: {
     fontSize: 24,

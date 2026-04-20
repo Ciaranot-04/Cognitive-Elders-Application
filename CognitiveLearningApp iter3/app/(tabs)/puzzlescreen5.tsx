@@ -5,6 +5,7 @@ Date: 27/02/2026
 */
 
 //import important and used modules
+import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -22,6 +23,15 @@ export default function puz5() {
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz5score = 0;
+  const defaultdiff = {
+    logic: "easy",
+    numeracy: "easy",
+    memory: "easy",
+    language: "easy",
+    visual: "easy",
+  };
+  const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
+  const difficulty = difficulties.logic || "easy";
   const [presses, setPresses] = React.useState(1);
 
   //text size segment, how we decide the scaleability of the text
@@ -38,36 +48,52 @@ export default function puz5() {
 
   //generate random puzzle from puzzles5.json
   const [pattern] = React.useState(() => {
-      const layouts = puzzles.patterns;
-      const i = Math.floor(Math.random() * layouts.length);
-      return layouts[i];
+      const filteredpatterns = puzzles.patterns.filter((pattern) => pattern.difficulty === difficulty);
+      const puzzlepool = filteredpatterns.length > 0 ? filteredpatterns : puzzles.patterns;
+      const i = Math.floor(Math.random() * puzzlepool.length);
+      return puzzlepool[i];
   });
 
   //here we continue up our timer, it is the next page so it starts at the time frm the previous page, it increments every second
-  const [time, settime] = React.useState(carriedtime); React.useEffect(() => {setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(time);
+  const [time, settime] = React.useState(carriedtime); React.useEffect(() => {const timer = setInterval(() => {settime(prev => prev + 1);},1000);return () => clearInterval(timer);
     }, []);
 
   //similarly to previous screen, we take the right colour and wrong colour
   const [answer] = React.useState(pattern.answer);
-  const [wrong1] = React.useState(pattern.wrong1);
-  const [wrong2] = React.useState(pattern.wrong2);
-  const [wrong3] = React.useState(pattern.wrong3);
-  //options array for the answer panel
-  const options = [wrong3, answer, wrong1, wrong2];
+  const [answershape] = React.useState(pattern.answershape);
+  const [wrongs] = React.useState<string[]>(pattern.wrongs);
+  const [wrongsshapes] = React.useState<string[]>(pattern.wrongsshapes);
+  const [hinttext] = React.useState(pattern.hinttext);
+  const options = [
+    { colour: wrongs[0], shape: wrongsshapes[0] },
+    { colour: answer, shape: answershape },
+    { colour: wrongs[1], shape: wrongsshapes[1] },
+    { colour: wrongs[2], shape: wrongsshapes[2] }
+  ];
 
   //grid setup
   const [gridsaved] = React.useState<string[]>(pattern.layout);
+  const [shapessaved] = React.useState<string[]>(pattern.shapes);
   const gridrows = [];
 
   //loop to draw pattern to the screen
   for (let i = 0; i < gridsaved.length; i++) {
-  const colour = gridsaved[i];
-  gridrows.push(
+    const colour = gridsaved[i];
+    const shape = shapessaved[i];
+    gridrows.push(
       <TouchableOpacity
-      key={i}
-      style={[styles.square, { backgroundColor: colour }]}
-      />
-  );
+        key={i}
+        style={styles.square}
+      >
+        {colour !== "transparent" && (
+          <Ionicons
+            name={shape as any}
+            size={26}
+            color={colour}
+          />
+        )}
+      </TouchableOpacity>
+    );
   }
   const grid = (
   <View style={styles.row}>
@@ -75,9 +101,9 @@ export default function puz5() {
   </View>
 
   );
-  function ansr(value: String) {
+  function ansr(value: string, shape: string) {
       setPresses(prev => prev + 1);
-      if (value === answer) {
+      if (value === answer && shape === answershape) {
           if(presses==1){
             puz5score = 100;
           }
@@ -94,7 +120,7 @@ export default function puz5() {
             puz5score = 0;
           }
           Puzzlescores[4] = puz5score;
-          router.push({ pathname: "/puzzlescreen7", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+          router.push({ pathname: "/puzzlescreen7", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, difficulties: JSON.stringify(difficulties) }});
       } else {
           Alert.alert("Incorrect, Try again.");
       }
@@ -110,19 +136,23 @@ export default function puz5() {
         </View>
         <View style={styles.sub3container}>
             <Text style={styles.logotext}>{time}s</Text>
-            <Text style={styles.text}>What colour is missing in the sequence?</Text>
+            <Text style={[styles.text,{paddingBottom:5}]}>{hinttext}</Text>
             <View style={styles.ansrow1}>
                 {/* Answer tiles */}
-                <TouchableOpacity key={'1'} style={[styles.anssquare, {backgroundColor: options[0]}]} onPress={() => ansr(options[0])}>
+                <TouchableOpacity key={'1'} style={styles.anssquare} onPress={() => ansr(options[0].colour, options[0].shape)}>
+                  <Ionicons name={options[0].shape as any} size={34} color={options[0].colour} />
                 </TouchableOpacity>
-                <TouchableOpacity key={'2'} style={[styles.anssquare, {backgroundColor: options[1]}]} onPress={() => ansr(options[1])}>
+                <TouchableOpacity key={'2'} style={styles.anssquare} onPress={() => ansr(options[1].colour, options[1].shape)}>
+                  <Ionicons name={options[1].shape as any} size={34} color={options[1].colour} />
                 </TouchableOpacity>
             </View>
             <View style={styles.ansrow2}>
               {/* Answer tiles */}
-                <TouchableOpacity key={'3'} style={[styles.anssquare,{backgroundColor: options[2]}]} onPress={() => ansr(options[2])}>
+                <TouchableOpacity key={'3'} style={styles.anssquare} onPress={() => ansr(options[2].colour, options[2].shape)}>
+                  <Ionicons name={options[2].shape as any} size={34} color={options[2].colour} />
                 </TouchableOpacity>
-                <TouchableOpacity key={'4'} style={[styles.anssquare,{backgroundColor: options[3]}]} onPress={() => ansr(options[3])}>
+                <TouchableOpacity key={'4'} style={styles.anssquare} onPress={() => ansr(options[3].colour, options[3].shape)}>
+                  <Ionicons name={options[3].shape as any} size={34} color={options[3].colour} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -193,6 +223,8 @@ const styles = StyleSheet.create({
     height: 27,
     margin: 4,
     borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   anssquare: {
     width: 50,
@@ -201,6 +233,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
     borderRadius: 10,
+    backgroundColor: '#273d85',
   },
   ansrow1:{
     justifyContent: 'space-evenly',

@@ -164,16 +164,16 @@
     {
       "id": 24,
       "difficulty": "hard",
-      "sentence": "Optimal play frequently involves evaluating not just the current game state, but the ____ consequences of each possible move.",
+      "sentence": "Optimal play frequently involves evaluating not just the current game state, but the ____ consequences of each move.",
       "answer": "cumulative",
       "options": ["immediate", "negligible", "cumulative", "random"]
     },
     {
       "id": 25,
       "difficulty": "hard",
-      "sentence": "Stroke mechanics require precise timing between arm pull and body rotation to maintain continuous ____ throughout the stroke cycle.",
-      "answer": "acceleration",
-      "options": ["acceleration", "deceleration", "stagnation", "hesitation"]
+      "sentence": "Continuous ____ increases distance traveled.",
+      "answer": "movement",
+      "options": ["movement", "deceleration", "stagnation", "hesitation"]
     },
     {
       "id": 26,

@@ -25,38 +25,42 @@ export default function Login() {
   //ran when log in button pressed
   const logintesting = async () => {
     try {
-      //if one of the fields is not entered
       if (!email || !password) {
         alert("Please enter your email and password");
         return;
       }
-      //otherwise we run a query to the database to see if the email and password exists
-      const user = await signInWithEmailAndPassword(auth, email.trim(), password.trim());
-      //we then get the uid from that user
-      const uid = user.user.uid;
-      //test they are hooked to that UID
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password.trim()
+      );
+
+      const uid = userCredential.user.uid;
+
       const loginq = query(collection(db, "Users"), where("UID", "==", uid));
       const logcheck = await getDocs(loginq);
 
-      //if it returns not empty here we pull the needed fields we want to forward to the home page
-      if (!logcheck.empty) {
-        // get the users data fields
-        const user = logcheck.docs[0].data();
-        // create constants of said data
-        const besttime = user.besttime;
-        const todaytime = user.todaystime;
-        const textsize = user.textsize;
-        //redirect to home page
-        router.push({
-          pathname: "/home",
-          params: { uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }
-        });
+      if (logcheck.empty) {
+        alert("No matching user record found.");
+        return;
       }
 
-    } 
-    //catch errors
-    catch (error: any) 
-    {
+      const userData = logcheck.docs[0].data();
+      const acctype = userData.acctype;
+      const textsize = userData.textsize ?? "Default";
+
+      if (acctype === "Elderly") {
+        router.push({ pathname: "/home", params: { uid, email, textsize } });
+      } 
+      else if (acctype === "Care") {
+        router.push({ pathname: "/memberhub", params: { uid, email, textsize } });
+      } 
+      else {
+        alert("Account log in error.");
+      }
+    } catch (error: any) {
+      console.log("Login error:", error);
       alert("Email or Password is incorrect");
     }
 };

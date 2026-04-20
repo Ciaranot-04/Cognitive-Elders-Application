@@ -19,46 +19,50 @@ export default function membar() {
   const params = useLocalSearchParams();
   const uid = params.uid as string;
   const email = params.email as string;
-  const link = params.link as string;
+  const link = params.perfuid as string;
   const selectedDate = params.date as string;
+  const perfuid = params.perfuid as string;
   let textsize = params.textsize as string;
   const [performance, setperformance] = useState<{ [key: string]: number } | null>(null);
+  const [tracktime, settime] = useState<string | null>(null);
   const formatDate = (dateStr: string) => {
-  const [year, month, day] = dateStr.split("-");
-  return `${day}-${month}-${year}`;
+    const [year, month, day] = dateStr.split("-");
+    return `${day}-${month}-${year}`;
   };
   useEffect(() => {
     async function fetchPerformance() {
-          try {
-            // get their name
-            const userDocRef = collection(db, "Users");
-            const userSnapshot = await getDocs(query(userDocRef, where("uid", "==", uid)));
+      try {
+        // get their name
+        const userDocRef = collection(db, "Users");
+        const userSnapshot = await getDocs(query(userDocRef, where("uid", "==", uid)));
 
-            if (!userSnapshot.empty) {
-              const userData = userSnapshot.docs[0].data();
-            } else {
-            }
-
-            const perfCollection = collection(db, "Users", uid, "performances");
-            const q = query(perfCollection, where("date", "==", selectedDate));
-            const snapshot = await getDocs(q);
-
-            if (!snapshot.empty) {
-              const docData = snapshot.docs[0].data();
-              setperformance({
-                lang: Math.min(docData.lang || 0, 100),
-                memory: Math.min(docData.memory || 0, 100),
-                visual: Math.min(docData.visual || 0, 100),
-                numeracy: Math.min(docData.numeracy || 0, 100),
-                logic: Math.min(docData.logic || 0, 100),
-              });
-            } else {
-              setperformance(null);
-            }
-          } catch (error) {
-            console.error("Error fetching performance:", error);
-          }
+        if (!userSnapshot.empty) {
+          const userData = userSnapshot.docs[0].data();
+        } else {
         }
+
+        const perfCollection = collection(db, "Users", perfuid, "performances");
+        const q = query(perfCollection, where("date", "==", selectedDate));
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+          const docData = snapshot.docs[0].data();
+          setperformance({
+            lang: Math.min(docData.lang || 0, 100),
+            memory: Math.min(docData.memory || 0, 100),
+            visual: Math.min(docData.visual || 0, 100),
+            numeracy: Math.min(docData.numeracy || 0, 100),
+            logic: Math.min(docData.logic || 0, 100),
+          });
+          settime(docData.Time ?? null);
+        } else {
+          setperformance(null);
+          settime(null);
+        }
+      } catch (error) {
+        console.error("Error fetching performance:", error);
+      }
+    }
 
     fetchPerformance();
   }, [uid, selectedDate]);
@@ -68,7 +72,7 @@ export default function membar() {
   return (
     <View style={styles.maincontainer}>
       <View style={styles.subcontainer}>
-        <TouchableOpacity onPress={() => router.push({ pathname: "/memberhub", params: { date: selectedDate, uid, email, textsize, linkeduser: link } })}>
+        <TouchableOpacity onPress={() => router.push({ pathname: "/memberhub", params: { uid, email, textsize } })}>
           <Ionicons name="arrow-back-circle-outline" size={40} color="#ffffff" />
         </TouchableOpacity>
         <Text style={styles.logotext}>Shapes</Text>
@@ -78,25 +82,33 @@ export default function membar() {
         <Text style={styles.logotext}>Scored Performance for {formatDate(selectedDate)}</Text>
 
         {performance ? (
-          <BarChart
-            data={{labels: Object.keys(performance),datasets: [{ data: Object.values(performance) as number[] }],}}
-            width={screenWidth}
-            height={350}
-            yAxisLabel=""
-            fromZero={true}
-            yAxisSuffix=""
-            chartConfig={{
-              backgroundGradientFrom: "#307ced",
-              backgroundGradientTo: "#307ced",
-              decimalPlaces: 0,
-              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-              style: { borderRadius: 16,},
-              propsForLabels: { fontSize: 12 },
-            }}
-            verticalLabelRotation={0}
-            style={{ marginVertical: 10,borderRadius: 20}}
-            segments={10}
-          />
+          <>
+            <BarChart
+              data={{labels: Object.keys(performance),datasets: [{ data: Object.values(performance) as number[] }],}}
+              width={screenWidth}
+              height={350}
+              yAxisLabel=""
+              fromZero={true}
+              yAxisSuffix=""
+              chartConfig={{
+                backgroundGradientFrom: "#171f59",
+                backgroundGradientTo: "#5f82ff",
+                decimalPlaces: 0,
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 16,
+                },
+                propsForBackgroundLines: {
+                  stroke: "rgba(0, 0, 0, 0.2)",
+                },
+              }}
+              verticalLabelRotation={0}
+              style={{ marginVertical: 10,borderRadius: 20}}
+              segments={10}
+            />
+            <Text style={styles.subtitle}>Completed Time: {tracktime !== null ? tracktime : "No time recorded"}</Text>
+          </>
         ) : (
           <Text style={styles.subtitle}>No performance data for this date.</Text>
         )}
@@ -123,6 +135,7 @@ const styles = StyleSheet.create({
     fontFamily: 'verdana',
     color: 'white',
     marginBottom: 40,
+    marginTop: 10,
     textShadowColor: 'rgba(0,0,0,0.8)',
     textShadowOffset: { width: 1, height: 1 },
     textAlign: 'center',

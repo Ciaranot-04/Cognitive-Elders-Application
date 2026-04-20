@@ -31,21 +31,25 @@ export default function memHome() {
   );
 
   const getLinkedUser = async () => {
-    try {
-      const userRef = doc(db, "Users", uid);
-      const userSnap = await getDoc(userRef);
+  try {
+    console.log("memberhub uid:", uid);
+    const userRef = doc(db, "Users", uid);
+    const userSnap = await getDoc(userRef);
 
-      if (userSnap.exists()) {
-        const linked = (userSnap.data().sharevia ?? "").trim();
-        setlinkeduser(linked);
-      } else {
-        setlinkeduser("");
-      }
-    } catch (error) {
-      console.log("Error getting linked user:", error);
+    if (userSnap.exists()) {
+      console.log("memberhub user data:", userSnap.data());
+      const linked = (userSnap.data().sharevia ?? "").trim();
+      console.log("sharevia:", linked);
+      setlinkeduser(linked);
+    } else {
+      console.log("User doc not found for uid:", uid);
       setlinkeduser("");
     }
-  };
+  } catch (error) {
+    console.log("Error getting linked user:", error);
+    setlinkeduser("");
+  }
+};
 
   const findacc = async () => {
     try {
@@ -100,7 +104,8 @@ export default function memHome() {
       pathname: "/membar",
       params: {
         date: day.dateString,
-        uid: linkeduser,
+        uid: uid,
+        perfuid: linkeduser,
         email: email,
         textsize: textsize,
         link: linkeduser

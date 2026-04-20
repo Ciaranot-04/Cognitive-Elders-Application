@@ -444,10 +444,10 @@
       "id": 29,
       "difficulty": "hard",
       "col": "#A0008B",
-      "answer": 16,
+      "answer": 4,
       "wrong1": 17,
-      "wrong2": 4,
-      "wrong3": 26,
+      "wrong2": 3,
+      "wrong3": 7,
       "wrong4": 15,
       "wrong5": 9,
       "layout": [

@@ -7,9 +7,8 @@ Date: 27/02/2026
 import { router, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import puzzles from '../puzzles/puzzles7.json';
 
-export default function puz7() {
+export default function puz6() {
   // pull and assign variables from passed router push
   const params = useLocalSearchParams();
   const todaytime = params.todaytime as string;
@@ -26,14 +25,6 @@ export default function puz7() {
   };
   const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
   const difficulty = difficulties.language || "easy";
-  const [selectedPuzzle] = React.useState(() => {
-    const matching = puzzles.patterns.filter(p => p.difficulty === difficulty);
-    const randomIndex = Math.floor(Math.random() * matching.length);
-    return matching[randomIndex];
-  });
-  const [scrambled] = React.useState(selectedPuzzle.scrambled);
-  const [correctanswer] = React.useState(selectedPuzzle.answer);
-  const [category] = React.useState(selectedPuzzle.category);
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz7scores = 0;
@@ -61,11 +52,11 @@ export default function puz7() {
   const [userAnswer, setuanswer] = React.useState('');
   const [message, setmessage] = React.useState('');
 
-  // when user clicks an option
+  // when user clicks submit
   const submit = () => {
-    if (userAnswer.trim().toLowerCase() === correctanswer.toLowerCase()) {
+    if (userAnswer.trim().toLowerCase() === correctanswer) {
       setmessage('Correct!');
-      if (userAnswer.trim().toLowerCase() === correctanswer.toLowerCase()) {
+      if (userAnswer.trim().toLowerCase() === correctanswer) {
         if (attempts >= 7) {
           puz7scores = 0;
         } 
@@ -91,7 +82,7 @@ export default function puz7() {
       router.push({ pathname: "/puzzlescreen8", params: {difficulties: JSON.stringify(difficulties), time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
     } 
     else {
-      alert('Wrong answer, try again.');
+      setmessage('Wrong answer, try again.');
       setattempts(prev => prev + 1);
     }
   };
@@ -103,10 +94,11 @@ export default function puz7() {
         <Text style={styles.logotext}>Shapes</Text>
       </View>
       <View style={styles.sub2container}>
-        <Text style={[styles.subtitle, { fontSize: 19 + textsizenumber, marginBottom: 25 }]}>Category: {category}</Text>
+        <Text style={[styles.subtitle, { fontSize: 19 + textsizenumber, marginBottom: 25 }]}>Solve for X!</Text>
         <View style={styles.puzzlesec}>
-          <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber }]}>Unscramble this word</Text>
-          <Text style={[styles.scrambled, { fontSize: 32 + textsizenumber }]}>{scrambled}</Text>
+          <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber }]}>Mathematics</Text>
+          <Text style={[styles.scrambled, { fontSize: 32 + textsizenumber }]}>{equation1}</Text>
+          <Text style={[styles.scrambled, { fontSize: 32 + textsizenumber }]}>{equation2}</Text>
           <TextInput style={[styles.input, { fontSize: 18 + textsizenumber }]} placeholder="Type your answer" placeholderTextColor="#d9e3ff" value={userAnswer} onChangeText={setuanswer} autoCapitalize="none" />
           <TouchableOpacity style={styles.submitb} onPress={submit}>
             <Text style={[styles.submitbt, { fontSize: 18 + textsizenumber }]}>Submit</Text>
