@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -97,6 +97,7 @@ export default function memHome() {
     textsizenumber = 0;
   }
 
+  // selected date is viewed in the bargraph page
   function dateselected(day: DateData){
     console.log(day.dateString); 
     setSelectedDate(day.dateString);

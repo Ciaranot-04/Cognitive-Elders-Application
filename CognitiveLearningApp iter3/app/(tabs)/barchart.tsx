@@ -32,9 +32,10 @@ export default function Account() {
   useEffect(() => {
     async function fetchPerformance() {
       try {
+        //fetch the user
         const userDocRef = collection(db, "Users");
         const userSnapshot = await getDocs(query(userDocRef, where("uid", "==", uid)));
-
+        //get performance for the day
         if (!userSnapshot.empty) {
           const userData = userSnapshot.docs[0].data();
           setUserName(userData.FirstName);
@@ -46,6 +47,7 @@ export default function Account() {
         const q = query(perfCollection, where("date", "==", selectedDate));
         const snapshot = await getDocs(q);
 
+        //if found, fill the data
         if (!snapshot.empty) {
           const docData = snapshot.docs[0].data();
           setPerformance({
@@ -55,8 +57,10 @@ export default function Account() {
             numeracy: Math.min(docData.numeracy || 0, 100),
             logic: Math.min(docData.logic || 0, 100),
           });
+          //set best time data
           settime(docData.Time ?? null);
         } else {
+          //otherwise no data found
           setPerformance(null);
           settime(null);
         }
@@ -67,7 +71,7 @@ export default function Account() {
 
     fetchPerformance();
   }, [uid, selectedDate]);
-
+  //get device screen width
   const screenWidth = Dimensions.get("window").width - 40;
 
   return (

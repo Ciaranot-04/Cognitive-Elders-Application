@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -14,6 +14,7 @@ import puzzles from '../puzzles/puzzles.json';
 export default function puz1() {
   //pull and assign variables from passed router push
   const params = useLocalSearchParams();
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",
@@ -27,7 +28,7 @@ export default function puz1() {
   let textsize = params.textsize as string;
   const difficulty = difficulties.visual || "easy";
   let puz1score = 0;
-  let puzzleScores = [0,0,0,0,0,0,0];
+  let puzzleScores = [0,0,0,0,0,0,0,0];
 
   //text size segment, how we decide the scaleability of the text
   let textsizenumber = 0;
@@ -41,6 +42,7 @@ export default function puz1() {
     textsizenumber = 0;
   }
 
+  //square size adjust so fit on screen
   let squaresize = 0;
   if(difficulty=="easy"){
     squaresize = 50;
@@ -51,6 +53,8 @@ export default function puz1() {
   if(difficulty=="hard"){
     squaresize = 45;
   }
+
+  //added time due to difficulty
   let extratime = 0;
   if(difficulty=="easy"){
     extratime = 0;

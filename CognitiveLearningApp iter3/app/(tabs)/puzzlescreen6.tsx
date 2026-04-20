@@ -3,10 +3,10 @@ Student Name: Ciaran O' Toole
 Student ID: C00297672
 Date: 27/02/2026
 */
-
 import { router, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import puzzles from '../puzzles/puzzles6.json';
 
 export default function puz6() {
   // pull and assign variables from passed router push
@@ -16,6 +16,7 @@ export default function puz6() {
   const email = params.email as string;
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",
@@ -27,8 +28,14 @@ export default function puz6() {
   const difficulty = difficulties.language || "easy";
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
-  let puz7scores = 0;
+  let puz6scores = 0;
   const [attempts, setattempts] = React.useState(1);
+
+  const filteredquestions = puzzles.patterns.filter((question) => question.difficulty == difficulty && question.answer != "");
+  const randomquestion = React.useMemo(() => filteredquestions[Math.floor(Math.random() * filteredquestions.length)], []);
+  const equation1 = randomquestion.equation1;
+  const equation2 = randomquestion.equation2;
+  const correctanswer = randomquestion.answer.toLowerCase();
 
   // text size logic
   let textsizenumber = 0;
@@ -56,37 +63,35 @@ export default function puz6() {
   const submit = () => {
     if (userAnswer.trim().toLowerCase() === correctanswer) {
       setmessage('Correct!');
-      if (userAnswer.trim().toLowerCase() === correctanswer) {
-        if (attempts >= 7) {
-          puz7scores = 0;
-        } 
-        else if (attempts >= 6) {
-          puz7scores = 5;
-        } 
-        else if (attempts >= 5) {
-          puz7scores = 20;
-        } 
-        else if (attempts >= 4) {
-          puz7scores = 40;
-        } 
-        else if (attempts >= 3) {
-          puz7scores = 60;
-        } 
-        else if (attempts >= 2) {
-          puz7scores = 80;
-        } 
-        else {
-          puz7scores = 100; // first try
-        }
-      Puzzlescores[6] = puz7scores;
-      router.push({ pathname: "/puzzlescreen8", params: {difficulties: JSON.stringify(difficulties), time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize }});
+      if (attempts >= 7) {
+        puz6scores = 0;
+      } 
+      else if (attempts >= 6) {
+        puz6scores = 5;
+      } 
+      else if (attempts >= 5) {
+        puz6scores = 20;
+      } 
+      else if (attempts >= 4) {
+        puz6scores = 40;
+      } 
+      else if (attempts >= 3) {
+        puz6scores = 60;
+      } 
+      else if (attempts >= 2) {
+        puz6scores = 80;
+      } 
+      else {
+        puz6scores = 100;
+      }
+      Puzzlescores[5] = puz6scores;
+      router.push({ pathname: "/puzzlescreen7", params: { difficulties: JSON.stringify(difficulties), time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize } });
     } 
     else {
       setmessage('Wrong answer, try again.');
       setattempts(prev => prev + 1);
     }
   };
-}
 
   return (
     <View style={styles.maincontainer}>
@@ -106,7 +111,7 @@ export default function puz6() {
         </View>
       </View>
       <View style={styles.sub3container}>
-        <Text style={[styles.text, { fontSize: 18 + textsizenumber }]}>{message}</Text>
+        <Text style={[styles.text, { fontSize: 18 + textsizenumber,marginTop:40 }]}>{message}</Text>
         <Text style={[styles.logotext, { fontSize: 24 + textsizenumber }]}>{time}s</Text>
       </View>
     </View>

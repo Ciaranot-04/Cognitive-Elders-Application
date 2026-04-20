@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -36,15 +36,17 @@ export default function membar() {
         const userDocRef = collection(db, "Users");
         const userSnapshot = await getDocs(query(userDocRef, where("uid", "==", uid)));
 
+        //if we dont find an entry
         if (!userSnapshot.empty) {
           const userData = userSnapshot.docs[0].data();
         } else {
         }
-
+        //pull the data from the linked users entry of that date
         const perfCollection = collection(db, "Users", perfuid, "performances");
         const q = query(perfCollection, where("date", "==", selectedDate));
         const snapshot = await getDocs(q);
 
+        //data set up
         if (!snapshot.empty) {
           const docData = snapshot.docs[0].data();
           setperformance({
@@ -54,8 +56,10 @@ export default function membar() {
             numeracy: Math.min(docData.numeracy || 0, 100),
             logic: Math.min(docData.logic || 0, 100),
           });
+          // set the time performance
           settime(docData.Time ?? null);
         } else {
+          //if nothing both null
           setperformance(null);
           settime(null);
         }
@@ -63,10 +67,9 @@ export default function membar() {
         console.error("Error fetching performance:", error);
       }
     }
-
     fetchPerformance();
   }, [uid, selectedDate]);
-
+  //find device screen width
   const screenWidth = Dimensions.get("window").width - 40;
 
   return (
@@ -77,7 +80,6 @@ export default function membar() {
         </TouchableOpacity>
         <Text style={styles.logotext}>Shapes</Text>
       </View>
-
       <View style={styles.sub2container}>
         <Text style={styles.logotext}>Scored Performance for {formatDate(selectedDate)}</Text>
 

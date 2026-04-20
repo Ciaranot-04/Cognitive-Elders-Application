@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -23,6 +23,7 @@ export default function puz5() {
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz5score = 0;
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",
@@ -120,7 +121,7 @@ export default function puz5() {
             puz5score = 0;
           }
           Puzzlescores[4] = puz5score;
-          router.push({ pathname: "/puzzlescreen7", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, difficulties: JSON.stringify(difficulties) }});
+          router.push({ pathname: "/puzzlescreen6", params: {time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, besttime: besttime, todaytime: todaytime, textsize: textsize, difficulties: JSON.stringify(difficulties) }});
       } else {
           Alert.alert("Incorrect, Try again.");
       }

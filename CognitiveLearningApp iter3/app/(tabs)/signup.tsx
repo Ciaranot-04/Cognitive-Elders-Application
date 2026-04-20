@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O" Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -19,22 +19,24 @@ export default function Signup() {
   const [confirm, setConfirm] = useState("");
   const [type, setType] = useState("Elderly");
 
-  function validateInputs() {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+  //function to validate if the user has used valid characters and has followed guidelines
+  function validate() {
+    const emailr = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordr = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
-    if (!emailRegex.test(email.trim())) {
+    //make sure a valid email is entered
+    if (!emailr.test(email.trim())) {
       Alert.alert("Enter a valid email address");
       return false;
     }
-
-    if (!passwordRegex.test(password)) {
-      Alert.alert("Password must be at least 8 characters and contain at least 1 letter and 1 number");
+    //make sure a valid password is entered
+    if (!passwordr.test(password)) {
+      Alert.alert("Password must be at least 8 characters and contain at least 1 letter and number");
       return false;
     }
-
-    if (!passwordRegex.test(confirm)) {
-      Alert.alert("Confirm password must be at least 8 characters and contain at least 1 letter and 1 number");
+    //make sure the confirm password follows the same rules
+    if (!passwordr.test(confirm)) {
+      Alert.alert("Password must be at least 8 characters and contain at least 1 letter and number");
       return false;
     }
 
@@ -46,18 +48,18 @@ export default function Signup() {
   const signup = async () => {
     //check if variables are still empty
     if (!email || !password || !confirm) {
-      //notify user
+      //notify user to fill in fields
       Alert.alert("Please fill in all fields");
       return;
     }
 
-    if (!validateInputs()) {
+    if (!validate()) {
       return;
     }
 
-    //if confirm password and password dont match
+    //if confirm and password dont match
     if (password !== confirm) {
-      //notify user
+      //notify user they dont match
       Alert.alert("Passwords do not match");
       return;
     }
@@ -91,28 +93,10 @@ export default function Signup() {
           <Text style={{ color: "white" }}>{type === "Elderly" ? "Elderly Individual" : "Care Taker"}</Text>
         </TouchableOpacity>
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text.replace(/\s/g, "").toLowerCase())}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={(text) => setPassword(text.replace(/\s/g, ""))}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm Password"
-        value={confirm}
-        onChangeText={(text) => setConfirm(text.replace(/\s/g, ""))}
-        secureTextEntry
-      />
+      {/*enter values section*/}
+      <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={(text) => setEmail(text.replace(/\s/g, "").toLowerCase())} keyboardType="email-address" autoCapitalize="none" />
+      <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={(text) => setPassword(text.replace(/\s/g, ""))} secureTextEntry/>
+      <TextInput style={styles.input} placeholder="Confirm Password" value={confirm} onChangeText={(text) => setConfirm(text.replace(/\s/g, ""))} secureTextEntry />
       {/*on click run signup function*/}
       <TouchableOpacity onPress={signup} style={styles.signupbutton}>
         <Text style={styles.buttont}>Sign Up</Text>

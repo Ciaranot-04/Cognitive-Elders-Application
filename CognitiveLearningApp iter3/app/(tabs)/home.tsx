@@ -1,12 +1,12 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Calendar, DateData } from "react-native-calendars";
@@ -32,6 +32,7 @@ export default function Home() {
     getUserData();
   }, []);
 
+  //get users name and also their difficulties, if none there, default to easy
   const getUserData = async () => {
     try {
       const userRef = doc(db, "Users", uid);
@@ -66,6 +67,7 @@ export default function Home() {
     }
   };
 
+  //calculate time in minute format
   function timecalc(seconds: number) {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -73,6 +75,7 @@ export default function Home() {
     return `${mins}:${calculation}`;
   }
 
+  //text scaling
   let textsizenumber = 0;
   if(textsize=="Larger"){
     textsizenumber = 5;
@@ -84,6 +87,27 @@ export default function Home() {
     textsizenumber = 0;
   }
 
+  async function runplay() {
+  const today = new Date().toISOString().split("T")[0]; // "YYYY-MM-DD"
+
+  try {
+    //check if an existing entry for todays date exists if so deny access to the track
+    const performancesRef = collection(db, "Users", uid, "performances");
+    const q = query(performancesRef, where("date", "==", today));
+    const snap = await getDocs(q);
+    //if entry found
+    if (!snap.empty) {
+      alert("You have completed todays track, come back again tomorrow");
+      return;
+      //if not allow access
+    } else {
+      router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties) }})
+    }
+  } catch (error) {
+    console.log("Error checking today's performance:", error);
+  }
+}
+  //day selected to view the stats
   function dateselected(day: DateData){
     console.log(day.dateString); 
     setSelectedDate(day.dateString);
@@ -110,7 +134,7 @@ export default function Home() {
               Best Time: {besttime !== null && besttime !== 9999999999 ? timecalc(besttime) : "No best time yet"}
             </Text>
             <Text style={[styles.logotext,{marginTop:20,marginBottom:30,fontSize: 26+textsizenumber}]}>Start Puzzle Track</Text>
-            <TouchableOpacity onPress={() => router.push({ pathname: "/puzzlescreen", params: { uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties) }})} style={[styles.playbutton,{marginBottom:80}]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => {runplay()}} style={[styles.playbutton,{marginBottom:80}]}><Text style={[styles.buttont,{fontSize:20+textsizenumber}]}>Begin</Text></TouchableOpacity>
         </View>
     </View>
   );

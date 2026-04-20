@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -23,6 +23,7 @@ export default function puz4() {
   let textsize = params.textsize as string;
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz4score = 0;
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",
@@ -60,6 +61,7 @@ export default function puz4() {
   //note down the variables from the puzzles4.json, we take the answer, incorrect, pattern
   const [answer] = React.useState(pattern.answer);
   const [col] = React.useState(pattern.col);
+  const [hinttext] = React.useState(pattern.hinttext);
   const [wrong1] = React.useState(pattern.wrong1);
   const [wrong2] = React.useState(pattern.wrong2);
   const [wrong3] = React.useState(pattern.wrong3);
@@ -122,7 +124,7 @@ export default function puz4() {
         </View>
         <View style={styles.sub3container}>
             <Text style={styles.logotext}>{time}s</Text>
-            <Text style={styles.text}>How many lighter tiles are there?</Text>
+            <Text style={styles.text}>{hinttext}</Text>
             <View style={styles.ansrow1}>
                 <TouchableOpacity key={'1'} style={[styles.anssquare, { backgroundColor: '#273d85' }]} onPress={() => answers(options[0])}>
                     <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}>

@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -25,8 +25,6 @@ export default function Details() {
   const [dob, setDob] = useState('');
 
   //default setup for variables
-  const bt = "0.00";
-  const tt = "0.00";
   const ts = "Default";
 
   function validateInputs() {
@@ -116,7 +114,7 @@ export default function Details() {
       //tell user account was created and auto forward them to the home page
       Alert.alert('Account Created Successfully');
       if(acc==="Elderly"){
-        router.push({pathname: "/home", params: { uid: uid, email: email, besttime: bt, todaytime: tt, textsize: ts }});
+        router.push({pathname: "/home", params: { uid: uid, email: email, textsize: ts }});
       }
       else{
         router.push({pathname: "/memberhub", params: { uid: uid, email: email, textsize: ts }});
@@ -132,25 +130,9 @@ export default function Details() {
       <Text style={styles.logotext}>Shapes</Text>
       <Text style={styles.subtitle}>Let's Get Started..</Text>
       {/*data fields*/}
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        value={firstName}
-        onChangeText={(text) => setFirstName(text.replace(/[^A-Za-z]/g, ""))}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Last Name"
-        value={lastName}
-        onChangeText={(text) => setLastName(text.replace(/[^A-Za-z]/g, ""))}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="DD/MM/YYYY"
-        value={dob}
-        onChangeText={(text) => setDob(text.replace(/[^0-9/]/g, ""))}
-        maxLength={10}
-      />
+      <TextInput style={styles.input} placeholder="First Name" value={firstName} onChangeText={(text) => setFirstName(text.replace(/[^A-Za-z]/g, ""))}/>
+      <TextInput style={styles.input} placeholder="Last Name" value={lastName} onChangeText={(text) => setLastName(text.replace(/[^A-Za-z]/g, ""))}/>
+      <TextInput style={styles.input} placeholder="DD/MM/YYYY" value={dob} onChangeText={(text) => setDob(text.replace(/[^0-9/]/g, ""))} maxLength={10}/>
       {/*Finish sign up button and creates the user by running the function*/}
       <TouchableOpacity onPress={data} style={styles.nextingbutton}>
         <Text style={styles.buttont}>Finish</Text>

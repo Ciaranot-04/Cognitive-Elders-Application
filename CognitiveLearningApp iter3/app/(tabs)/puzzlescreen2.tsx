@@ -1,22 +1,26 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
+//import important and used modules
 import { router, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import puzzles from '../puzzles/puzzles8.json';
 
 export default function puz2() {
+  //all passed params become constants
   const params = useLocalSearchParams();
   const uid = params.uid as string;
   const email = params.email as string;
   const carriedtime = Number(params.time);
   let textsize = params.textsize as string;
+  //puzzle score array tracking
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
   let puz8scores = 0;
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",
@@ -26,18 +30,24 @@ export default function puz2() {
   };
   const difficulties = params.difficulties ? JSON.parse(params.difficulties as string) : defaultdiff;
   const difficulty = difficulties.language || "easy";
+
+  //choose the puzzle once so incase of refresh it doesn't change
   const [selectedp] = React.useState(() => {
     const filtered = puzzles.patterns.filter((pattern) => pattern.difficulty === difficulty);
     const puzzlepool = filtered.length > 0 ? filtered : puzzles.patterns;
+    //select random puzzle
     const randomi = Math.floor(Math.random() * puzzlepool.length);
     return puzzlepool[randomi];
   });
+
+  //components pulled from the json file
   const [sentence] = React.useState(selectedp.sentence);
   const [correctanswer] = React.useState(selectedp.answer);
   const [options] = React.useState<string[]>(selectedp.options);
   const [attempts, setattempts] = React.useState(1);
   const [message, setmessage] = React.useState('');
 
+  //text size scaling
   let textsizenumber = 0;
   if (textsize == "Larger") {
     textsizenumber = 5;
@@ -49,19 +59,17 @@ export default function puz2() {
     textsizenumber = 0;
   }
 
+  //keep the timer running from its last left off number
   const [time, settime] = React.useState(carriedtime);
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      settime((prev) => prev + 1);
-    }, 1000);
-
+  React.useEffect(() => { const timer = setInterval(() => { settime((prev) => prev + 1);}, 1000);
     return () => clearInterval(timer);
   }, []);
 
+  //answer submission handler
   const submit = (selectedOption: string) => {
     if (selectedOption.toLowerCase() === correctanswer.toLowerCase()) {
       setmessage('Correct!');
-
+      //check the attempt count
       if (attempts >= 7) {
         puz8scores = 0;
       } 
@@ -83,13 +91,16 @@ export default function puz2() {
       else {
         puz8scores = 100;
       }
+      //save score
       Puzzlescores[7] = puz8scores;
+      //redirect to next page
       router.push({
         pathname: "/puzzlescreen3",
         params: { time: time, puzzleScores: JSON.stringify(Puzzlescores), uid: uid, email: email, textsize: textsize, difficulties: JSON.stringify(difficulties)}
       });
     } 
     else {
+      //notify it is wrong and increment attempts
       setmessage('Wrong answer, try again.');
       setattempts((prev) => prev + 1);
     }
@@ -100,32 +111,23 @@ export default function puz2() {
       <View style={[styles.subcontainer, { marginTop: 20 }]}>
         <Text style={styles.logotext}>Shapes</Text>
       </View>
+      {/* choose option */}
       <View style={styles.sub2container}>
         <Text style={[styles.subtitle, { fontSize: 18 + textsizenumber, marginBottom: 25  }]}>Pick the correct word</Text>
         <View style={[styles.puzzlesec,{marginBottom:20}]}>
-          <Text style={[styles.questionText, { fontSize: 24 + textsizenumber }]}>
-            {sentence}
-          </Text>
+          <Text style={[styles.questionText, { fontSize: 24 + textsizenumber }]}>{sentence}</Text>
           {options.map((option, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.optionButton}
-              onPress={() => submit(option)}
-            >
-              <Text style={[styles.optionText, { fontSize: 18 + textsizenumber }]}>
-                {option}
-              </Text>
+            <TouchableOpacity key={index} style={styles.optionButton} onPress={() => submit(option)}>
+              <Text style={[styles.optionText, { fontSize: 18 + textsizenumber }]}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
       </View>
       <View style={styles.sub3container}>
-        <Text style={[styles.text, { fontSize: 18 + textsizenumber }]}>
-          {message}
-        </Text>
-        <Text style={[styles.logotext, { fontSize: 24 + textsizenumber }]}>
-          {time}s
-        </Text>
+        {/* notification message */}
+        <Text style={[styles.text, { fontSize: 18 + textsizenumber }]}>{message}</Text>
+        {/*display time */}
+        <Text style={[styles.logotext, { fontSize: 24 + textsizenumber }]}>{time}s</Text>
       </View>
     </View>
   );

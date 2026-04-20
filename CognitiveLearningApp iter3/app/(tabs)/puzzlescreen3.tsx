@@ -1,7 +1,7 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
 //import important and used modules
@@ -23,6 +23,7 @@ export default function puz3() {
   let textsize = params.textsize as string;
   const [presses, setPresses] = React.useState(1);
   let puz3score = 0;
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",

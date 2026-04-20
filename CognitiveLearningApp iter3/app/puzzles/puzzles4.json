@@ -2,6 +2,7 @@
   "patterns": [
     {
       "id": 1,
+      "hinttext":"How many orange tiles are there?",
       "difficulty": "easy",
       "col": "orange",
       "answer": 7,
@@ -17,6 +18,7 @@
     },
     {
       "id": 2,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "easy",
       "col": "yellow",
       "answer": 5,
@@ -32,6 +34,7 @@
     },
     {
       "id": 3,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "easy",
       "col": "yellow",
       "answer": 6,
@@ -47,6 +50,7 @@
     },
     {
       "id": 4,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "easy",
       "col": "red",
       "answer": 5,
@@ -62,6 +66,7 @@
     },
     {
       "id": 5,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "easy",
       "col": "red",
       "answer": 11,
@@ -77,6 +82,7 @@
     },
     {
       "id": 6,
+      "hinttext":"How many orange tiles are there?",
       "difficulty": "easy",
       "col": "orange",
       "answer": 7,
@@ -92,6 +98,7 @@
     },
     {
       "id": 7,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "easy",
       "col": "yellow",
       "answer": 5,
@@ -107,6 +114,7 @@
     },
     {
       "id": 8,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "easy",
       "col": "red",
       "answer": 2,
@@ -122,6 +130,7 @@
     },
     {
       "id": 9,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "easy",
       "col": "yellow",
       "answer": 10,
@@ -137,6 +146,7 @@
     },
     {
       "id": 10,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "easy",
       "col": "red",
       "answer": 9,
@@ -152,6 +162,7 @@
     },
     {
       "id": 11,
+      "hinttext":"How many orange tiles are there?",
       "difficulty": "medium",
       "col": "orange",
       "answer": 14,
@@ -169,6 +180,7 @@
     },
     {
       "id": 12,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "medium",
       "col": "yellow",
       "answer": 10,
@@ -186,6 +198,7 @@
     },
     {
       "id": 13,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "medium",
       "col": "yellow",
       "answer": 12,
@@ -203,6 +216,7 @@
     },
     {
       "id": 14,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "medium",
       "col": "red",
       "answer": 10,
@@ -220,6 +234,7 @@
     },
     {
       "id": 15,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "medium",
       "col": "red",
       "answer": 22,
@@ -237,6 +252,7 @@
     },
     {
       "id": 16,
+      "hinttext":"How many orange tiles are there?",
       "difficulty": "medium",
       "col": "orange",
       "answer": 14,
@@ -254,6 +270,7 @@
     },
     {
       "id": 17,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "medium",
       "col": "yellow",
       "answer": 10,
@@ -271,6 +288,7 @@
     },
     {
       "id": 18,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "medium",
       "col": "red",
       "answer": 4,
@@ -288,6 +306,7 @@
     },
     {
       "id": 19,
+      "hinttext":"How many yellow tiles are there?",
       "difficulty": "medium",
       "col": "yellow",
       "answer": 20,
@@ -305,6 +324,7 @@
     },
     {
       "id": 20,
+      "hinttext":"How many red tiles are there?",
       "difficulty": "medium",
       "col": "red",
       "answer": 18,
@@ -322,6 +342,7 @@
     },
     {
       "id": 21,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#9200F4",
       "answer": 3,
@@ -337,6 +358,7 @@
     },
     {
       "id": 22,
+      "hinttext": "How many of the darker colour appear?",
       "difficulty": "hard",
       "col": "#4451AF",
       "answer": 15,
@@ -352,6 +374,7 @@
     },
     {
       "id": 23,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#00FF04",
       "answer": 5,
@@ -367,6 +390,7 @@
     },
     {
       "id": 24,
+      "hinttext": "How many of the darker colour appear?",
       "difficulty": "hard",
       "col": "#BAA400",
       "answer": 14,
@@ -382,6 +406,7 @@
     },
     {
       "id": 25,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#009DFF",
       "answer": 4,
@@ -397,6 +422,7 @@
     },
     {
       "id": 26,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#4F153A",
       "answer": 4,
@@ -412,6 +438,7 @@
     },
     {
       "id": 27,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#00A2BF",
       "answer": 4,
@@ -427,6 +454,7 @@
     },
     {
       "id": 28,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#777126",
       "answer": 4,
@@ -442,6 +470,7 @@
     },
     {
       "id": 29,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#A0008B",
       "answer": 4,
@@ -457,6 +486,7 @@
     },
     {
       "id": 30,
+      "hinttext": "How many of the lighter colour appear?",
       "difficulty": "hard",
       "col": "#D87300",
       "answer": 14,

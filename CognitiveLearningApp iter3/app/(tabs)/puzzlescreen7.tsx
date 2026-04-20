@@ -17,6 +17,7 @@ export default function puz7() {
   const email = params.email as string;
   const besttime = params.besttime as string;
   const carriedtime = Number(params.time);
+  //if for some reason no difficulty is set
   const defaultdiff = {
     logic: "easy",
     numeracy: "easy",

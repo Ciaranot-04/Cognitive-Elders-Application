@@ -1,9 +1,10 @@
 /*
 Student Name: Ciaran O' Toole
 Student ID: C00297672
-Date: 27/02/2026
+Date: 20/04/2026
 */
 
+//import important and used modules
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
@@ -13,20 +14,25 @@ import { BarChart } from 'react-native-chart-kit';
 import { db } from "./config";
 
 export default function results() {
+  //pull the params we passed through to this page and assign them to constants
   const params = useLocalSearchParams();
   const uid = params.uid as string;
   const email = params.email as string;
+  //score array tracking
   let Puzzlescores = params.puzzleScores ? JSON.parse(params.puzzleScores as string) : new Array(8).fill(0);
+  //final time carried over
   const carriedtime = Number(params.time);
   const time = carriedtime;
   let textsize = params.textsize as string;
 
-  const lang = 100;
-  const memory = 100;
-  const numeracy = 100;
-  const visual = 100;
-  const logic = 100;
+  //calculate scoring in each individual category
+  const lang = (Puzzlescores[7]+Puzzlescores[6])/2;
+  const memory = (Puzzlescores[1]);
+  const numeracy = (Puzzlescores[5]);
+  const visual = (Puzzlescores[2]+Puzzlescores[3])/2;
+  const logic = (Puzzlescores[0]+Puzzlescores[4])/2;
 
+  // chart setup
   const dataforchart = {
     labels: ["Logic", "Numeracy", "Memory", "Language", "Visual"],
     datasets: [
@@ -34,6 +40,7 @@ export default function results() {
     ],
   };
 
+  //text adjustment values
   let textsizenumber = 0;
   if (textsize == "Larger") {
     textsizenumber = 5;
@@ -45,22 +52,25 @@ export default function results() {
     textsizenumber = -5;
   }
 
+  //for if they need to demote or promote difficulty
   function nextDifficulty(current: string, score: number) {
     const levels = ["easy", "medium", "hard"];
-    const currentIndex = levels.indexOf(current);
-    const safeIndex = currentIndex === -1 ? 0 : currentIndex;
+    const currenti = levels.indexOf(current);
+    const safei = currenti === -1 ? 0 : currenti;
 
+    //promote level
     if (score >= 80) {
-      return levels[Math.min(safeIndex + 1, levels.length - 1)];
+      return levels[Math.min(safei + 1, levels.length - 1)];
     }
-
+    //fail level, demote
     if (score <= 40) {
-      return levels[Math.max(safeIndex - 1, 0)];
+      return levels[Math.max(safei - 1, 0)];
     }
-
-    return levels[safeIndex];
+    //return pos
+    return levels[safei];
   }
 
+  //calculate the time in minutes and seconds not just seconds
   function timecalc(seconds: number) {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -68,20 +78,23 @@ export default function results() {
     return `${mins}:${calculation}`;
   }
 
+  //the final time
   const finishedtime = timecalc(carriedtime);
 
+  //if any changes apply them in their tracked difficulties sector
   async function updateUserDifficulties() {
     try {
       const userRef = doc(db, "Users", uid);
       const userSnap = await getDoc(userRef);
 
+      //check if the user exists
       if (!userSnap.exists()) {
         console.log("User not found");
         return;
       }
-
+      //grab their data
       const userData = userSnap.data();
-
+      //default values
       const currentDifficulties = userData.difficulties || {
         logic: "easy",
         numeracy: "easy",
@@ -89,7 +102,7 @@ export default function results() {
         language: "easy",
         visual: "easy",
       };
-
+      //update accordingly
       const updatedDifficulties = {
         logic: nextDifficulty(currentDifficulties.logic, logic),
         numeracy: nextDifficulty(currentDifficulties.numeracy, numeracy),
@@ -97,15 +110,16 @@ export default function results() {
         language: nextDifficulty(currentDifficulties.language, lang),
         visual: nextDifficulty(currentDifficulties.visual, visual),
       };
-
+      //update the database
       await updateDoc(userRef, {
         difficulties: updatedDifficulties,
       });
+      //catch errors
     } catch (error) {
       console.error("Error updating difficulties: ", error);
     }
   }
-
+  //if this time is better than best update it
   async function updateBestTime() {
     try {
       const userRef = doc(db, "Users", uid);
@@ -119,6 +133,7 @@ export default function results() {
       const userData = userSnap.data();
       const currentbest = userData.besttime;
 
+      //compare both in seconds
       if (currentbest === undefined || currentbest === null) {
         await updateDoc(userRef, {
           besttime: carriedtime,
@@ -126,7 +141,7 @@ export default function results() {
         console.log("Best time created:", carriedtime);
         return;
       }
-
+      //if new best made
       if (carriedtime < Number(currentbest)) {
         await updateDoc(userRef, {
           besttime: carriedtime,
@@ -139,6 +154,7 @@ export default function results() {
       console.error("Error updating best time:", error);
     }
   }
+  //update the users entries for todays performance
   async function userdaylog() {
     try {
       const today = new Date();
@@ -150,7 +166,7 @@ export default function results() {
       console.error("Error saving daily log: ", error);
     }
   }
-
+  //run all needed functions
   React.useEffect(() => {
     async function savedata() {
       if (uid) {
@@ -162,6 +178,7 @@ export default function results() {
     savedata();
   }, []);
 
+  //sets the icons for displaying promotions, demotions, standstills
   function iconsetter(score: number) {
     if (score <= 40) {
       return <Ionicons name="arrow-down-circle" size={28} color="#cc0000" />;
@@ -180,6 +197,7 @@ export default function results() {
       <View style={[styles.sub2container, { overflow: "hidden" }]}>
         <Text style={[styles.logotext, { marginBottom: 10, paddingTop: 30 }]}>Your Scores Today</Text>
         <Text style={[styles.buttont, { marginBottom: 20, alignSelf: "center" }]}>Completion Time: {finishedtime}</Text>
+        {/* bar chart sector */}
         <BarChart
           data={dataforchart}
           width={370}
