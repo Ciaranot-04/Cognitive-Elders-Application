@@ -1,0 +1,206 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.top {
+  min-height: 100vh;
+  background-color: #759eff;
+  padding: 40px 60px;
+  color: #051d3a;
+  display: flex;
+  flex-direction: column;
+}
+
+.headered {
+  font-size: 45px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+.contact:hover {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: rgb(4, 22, 44);
+  color: white;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform 1.3s ease;
+}
+
+.button:hover {
+  transform: translateX(35px);
+}
+
+h1 {
+  margin-bottom: 25px;
+  margin-top: 20px;
+  color: #c1d5ff;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+h2 {
+  margin-top: 45px;
+  margin-bottom: 10px;
+}
+
+.topcontent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 40px;
+}
+
+.spacing{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;  
+}
+
+.topl {
+  width: 58%;
+}
+
+.topr {
+  width: 38%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.middle {
+  background: linear-gradient(to bottom, #759eff, #263453);
+  color: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom {
+  background: #263453;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.references {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 40px;
+}
+
+.ref {
+  display: flex;
+  text-decoration: none;
+  color: white;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 0;
+}
+
+.arrow {
+  width: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  animation: bounce 2s infinite;
+}
+
+.arrowsep {
+  display: flex;
+  max-width: 650px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.carousel-track {
+  width: 220px;
+  height: 450px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-item.active {
+  opacity: 1;
+}
+
+.carouselb {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: rgb(5, 13, 40);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+}
